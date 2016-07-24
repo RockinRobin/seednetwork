@@ -3,4 +3,4 @@ dj-database-url==0.2.1
 gunicorn==0.17.4
 MySQL-python==1.2.4b2
 psycopg2==2.6.1
-whitenoise==2.0.6
+whitenoise==3.2
