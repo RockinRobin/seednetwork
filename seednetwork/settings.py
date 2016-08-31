@@ -6,8 +6,6 @@ DEBUG = False
 if 'SEEDNETWORK_DEBUG' in os.environ:
 	DEBUG = (os.environ['SEEDNETWORK_DEBUG'].startswith('T'))
 
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
      ('Seed Network Admin', os.environ['SEEDNETWORK_DEFAULT_FROM_EMAIL']),
 )
@@ -88,13 +86,6 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['SEEDNETWORK_SECRETKEY']
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.filesystem.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
 #For upgrade to django 1.10 definition of TEMPLATES
 TEMPLATES = [
     {
@@ -102,8 +93,9 @@ TEMPLATES = [
         'DIRS': [
             # insert your TEMPLATE_DIRS here
         ],
-        'APP_DIRS': True,
+        #'APP_DIRS': True,
         'OPTIONS': {
+            'debug': DEBUG,
             'context_processors': [
                 # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
                 # list if you haven't customized them:
@@ -115,6 +107,11 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.filesystem.Loader',
+                #'django.template.loaders.eggs.Loader',
+            ]
         },
     },
 ]
@@ -134,8 +131,6 @@ ROOT_URLCONF = 'seednetwork.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'seednetwork.wsgi.application'
-
-TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
     'seedlibrary',
