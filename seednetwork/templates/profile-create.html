@@ -5,12 +5,12 @@
     {% if user.is_authenticated %}
         <p>You are already logged in. You can edit your personal information by clicking on My Profile above.</p>
     {% else %}
-        <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
+        <form method="post" action="{% url 'views_user-new_user' %}">
             <table>{% csrf_token %}
                 {{ uiform.as_table }}
                 {{ miform.as_table }}
             </table>
-            <a href="{% url 'seednetwork.views.home' %}">Cancel</a> | <input type="submit" value="Register">
+            <a href="{% url 'seednetwork-home' %}">Cancel</a> | <input type="submit" value="Register">
         </form>
 		<p>You can edit your information at any time by logging in and clicking on My Profile.</p>
     {% endif %}

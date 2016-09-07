@@ -54,14 +54,14 @@ def new_user(request):
 			if authuser is not None:
 				if authuser.is_active:
 					login(request, authuser)
-					return redirect('seednetwork.views.home')
+					return redirect('seednetwork-home')
 
 
 		return render_to_response('profile-create.html',
 			{ "miform": miform, "uiform": uiform },
               context_instance=RequestContext(request))
 
-	return redirect('seednetwork.views.home')
+	return redirect('seednetwork-home')
 
 @login_required
 def profile(request):
@@ -88,7 +88,7 @@ def edit_profile(request):
 			user.email = form.cleaned_data['email']
 			user.save()
 
-			return redirect('seednetwork.views_user.profile')
+			return redirect('views_user-profile')
 	else:
 		data = {}
 		data['first_name'] = user.first_name

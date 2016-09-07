@@ -46,7 +46,7 @@ def seed_create(request):
 
 			update_seed_events(seed, seed_form.cleaned_data['events'])
 
-			return redirect('seedlibrary.views.seed_create_confirm')
+			return redirect('views-seed_create_confirm')
 		
 
 	return render_to_response('seed-create.html',
@@ -152,7 +152,7 @@ def seed_edit(request, id):
 
 			update_seed_events(seed, form.cleaned_data['events'])
 
-			return redirect('seedlibrary.views.seeds')
+			return redirect('views-seeds')
 	else:
 		data = {}
 		data['seed_type'] = seed.seed_type
@@ -186,7 +186,7 @@ def seed_confirm_archive(request, id):
 			seed.archived = False
 			seed.save()
 
-		return redirect('seedlibrary.views.seeds')
+		return redirect('views-seeds')
 
 	return render_to_response('seed-confirm-archive.html',
 			{ "seed":seed, "error": error },

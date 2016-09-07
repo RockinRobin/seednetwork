@@ -6,10 +6,10 @@
 
 	  
     {% if user.is_authenticated %}
-        <h3><a href="{% url 'seedlibrary.views.seed_create' %}">Add a new seed</a> or 
+        <h3><a href="{% url 'views-seed_create' %}">Add a new seed</a> or 
          <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">Browse all seeds</a> or 
 		 Search for seeds, towns, or members below:
-        <p><form id="search" class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+        <p><form id="search" class="searchform" method="post" action="{% url 'views_search-seed_search' %}">{% csrf_token %}
             <input id="q" type="text" name="q"> <input type="submit" value="Search">
         </form></p>
     {% else %}
@@ -30,21 +30,21 @@ meet monthly in Cummington. More information about our group's goals, activities
         <td width="298" height="714" valign="top">
 
             <span class="sectionheader">Member Login:</span>
-            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+            <form method="post" action="{% url 'auth-views-login' %}">
             <table>{% csrf_token %}
                 {{ login_form.as_table }}
                 <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
             </table>
-                <input type="hidden" name="next" value="{% url 'seednetwork.views.home' %}" />
+                <input type="hidden" name="next" value="{% url 'seednetwork-home' %}" />
             </form>
-            <a href="{% url 'django.contrib.auth.views.password_reset' %}">I forgot my password</a>
+            <a href="{% url 'auth-views-password_reset' %}">I forgot my password</a>
 
         </td>
         <td width="1">&nbsp;</td>
         <td width="650" valign="top">
 
         <span class="sectionheader">New member registration:</span>
-        <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
+        <form method="post" action="{% url 'views_user-new_user' %}">
         <table>{% csrf_token %}
             {{ create_user_form.as_table }}
             {{ member_info_form.as_table }}

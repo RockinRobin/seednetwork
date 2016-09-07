@@ -3,7 +3,7 @@
 {% block pagetitle %}Search{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        <form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+        <form  class="searchform" method="post" action="{% url 'views_search-seed_search' %}">{% csrf_token %}
             <input type="text" name="q" value="{{ q }}"> <input type="submit" value="Search"><br/>
             <input type="checkbox" name="archive" {{ archived_checked }}>Include archived seeds
         </form>

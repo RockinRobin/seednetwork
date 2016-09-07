@@ -5,7 +5,7 @@
     {% if event_list %}
         {% for event in event_list %}
             <ul>
-            <li><a href="{% url 'seedlibrary.views.seeds_at_event' id=event.id %}">{{ event.name }}</a> on {{ event.date|date }}
+            <li><a href="{% url 'views-seeds_at_event' id=event.id %}">{{ event.name }}</a> on {{ event.date|date }}
             <p>{{ event.description }}</p>
             </li>
             </ul>
@@ -17,7 +17,7 @@
     {% if past_event_list %}
         {% for event in past_event_list %}
             <ul>
-                <li><a href="{% url 'seedlibrary.views.seeds_at_event' id=event.id %}">{{ event.name }}</a> on {{ event.date|date }}
+                <li><a href="{% url 'views-seeds_at_event' id=event.id %}">{{ event.name }}</a> on {{ event.date|date }}
                     <p>{{ event.description }}</p>
                 </li>
             </ul>

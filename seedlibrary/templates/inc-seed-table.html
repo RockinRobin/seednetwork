@@ -25,7 +25,7 @@
             {% with seed.user.memberinfo_set.all|first as mi %}
                 <td>
                     {% if mi.include_in_member_profiles %}
-                        <a href="{% url 'seednetwork.views_user.member' mid=mi.id %}">{{ seed.user.username }}</a>
+                        <a href="{% url 'views_user-member' mid=mi.id %}">{{ seed.user.username }}</a>
                     {% else %}
                         {{ seed.user.username }}
                     {% endif %}
@@ -35,11 +35,11 @@
             {% endif %}
             <td>
                 {% ifequal seed.user.username user.username %}
-                    <a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a>
+                    <a href="{% url 'views-seed_edit' id=seed.id %}">Edit</a>
                     {% if seed.archived %}
-                        | <a href="{% url 'seedlibrary.views.seed_confirm_archive' id=seed.id %}">Unarchive</a>
+                        | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Unarchive</a>
                     {% else %}
-                        | <a href="{% url 'seedlibrary.views.seed_confirm_archive' id=seed.id %}">Archive</a>
+                        | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Archive</a>
                     {% endif %}
                 {% endifequal %}
 

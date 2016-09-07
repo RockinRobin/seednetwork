@@ -16,8 +16,8 @@
 		<tr><td><b>Include in Member Profiles:</b></td> <td>{% if memberinfo.include_in_member_profiles %} Yes {% else %} No {% endif %}
         </table>
         <br/>
-        <a href="{% url 'seednetwork.views_user.edit_profile' %}">Edit Profile</a> |
-        <a href="{% url 'django.contrib.auth.views.password_change' %}">Change Password</a>
+        <a href="{% url 'views_user-edit_profile' %}">Edit Profile</a> |
+        <a href="{% url 'auth-views-password_change' %}">Change Password</a>
     {% else %}
     {% endif %}
 {% endblock %}
