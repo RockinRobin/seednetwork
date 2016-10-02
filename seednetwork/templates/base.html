@@ -26,11 +26,12 @@
             <td class="nav" width="940" height="27">
                
                 {% if user.is_authenticated %}
-				 <a href="{% url 'seednetwork-home' %}">Seed Bank</a>
+				 <a href="{% url 'seednetwork-home' %}">Home</a>
                      <a href="{% url 'views_user-members' %}">Members</a>
+                     <a href="{% url 'views_search-seed_search' %}">Browse Seeds</a>
+                     <a href="{% url 'views-seed_create' %}">Add Seed</a>
                      <a href="{% url 'views_user-profile' %}">My profile</a>
                      <a href="{% url 'views-seeds' %}">My seeds</a>
-                     <a href="{% url 'views-events' %}">Events</a>
 
                     <a href="{% url 'auth-views-logout' %}">Log out</a>
                     {% if user.is_staff %}
