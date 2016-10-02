@@ -12,7 +12,6 @@
                 <th>Town</th>
 				<th>Street Address</th>
 				<th>Mailing Address</th>
-				<th>About Me</th>
             </tr>
             {% for mi in memberinfo_list %}
                 <tr>
@@ -59,7 +58,6 @@
                             {% endif %}
                         </td>
 						
-						<td>{{ mi.about_me }}</td>
                    {% else %}
                         <td colspan="7" style="text-align: center;"><em>(private)</em></td>
                    {% endif %}
