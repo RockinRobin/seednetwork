@@ -9,7 +9,6 @@
 				<th>Full Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Town</th>
 				<th>Street Address</th>
 				<th>Mailing Address</th>
             </tr>
@@ -41,9 +40,6 @@
                                 <em>(private)</em>
                             {% endif %}
                         </td>
-						
-						<td>{{ mi.town }}</td>
-						
 						 <td>{% if mi.street_address_is_public %}
                                 {{ mi.street_address }}
                             {% else %}

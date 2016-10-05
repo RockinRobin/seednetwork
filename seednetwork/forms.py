@@ -20,7 +20,6 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	last_name = forms.CharField(max_length=150, required=True)
 	email = forms.CharField(max_length=150, required=True)
 	email_is_public = forms.BooleanField(required=False, initial=True)
-	town = forms.CharField(max_length=150, required=True)
 	phone = forms.CharField(max_length=150, required=False)
 	phone_is_public = forms.BooleanField(required=False, initial=True)
 

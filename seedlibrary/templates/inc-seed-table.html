@@ -8,7 +8,6 @@
         <th>Description</th>
         {% if full %}
         <th>Member</th>
-        <th>Town</th>
         {% endif %}
         <th>Actions</th></tr>
     {% for seed in seed_list_for_table %}
@@ -30,7 +29,6 @@
                         {{ seed.user.username }}
                     {% endif %}
                 </td>
-                <td>{{ mi.town }}</td>
             {% endwith %}
             {% endif %}
             <td>

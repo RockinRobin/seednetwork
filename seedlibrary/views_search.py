@@ -34,7 +34,6 @@ def seed_search(request):
 				Q(seed_type__icontains=word)|
 				Q(crop_type__icontains=word)|
 				Q(seed_variety__icontains=word)|
-				Q(user__memberinfo__town__icontains=word)|
 				Q(user__username__icontains=word)
 			)
 

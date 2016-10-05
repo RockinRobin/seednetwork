@@ -21,7 +21,6 @@ def get_memberinfo(u):
 
 def fill_member_from_form(mi, form):
 	mi.email_is_public = form.cleaned_data['email_is_public']
-	mi.town = form.cleaned_data['town']
 	mi.phone = form.cleaned_data['phone']
 	mi.phone_is_public = form.cleaned_data['phone_is_public']
 
@@ -95,7 +94,6 @@ def edit_profile(request):
 		data['last_name'] = user.last_name
 		data['email'] = user.email
 		data['email_is_public'] = mi.email_is_public
-		data['town'] = mi.town
 		data['phone'] = mi.phone
 		data['phone_is_public'] = mi.phone_is_public
 		data['street_address'] = mi.street_address
