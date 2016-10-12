@@ -34,7 +34,7 @@ def seed_create(request):
 
 			seed = Seed.objects.create(
 				user = request.user,
-				seed_type = seed_form.cleaned_data['seed_type'],
+			#	seed_type = seed_form.cleaned_data['seed_type'],
 				crop_type = seed_form.cleaned_data['crop_type'],
 				seed_variety = seed_form.cleaned_data['seed_variety'],
 				seed_description = seed_form.cleaned_data['seed_description'],
@@ -44,7 +44,7 @@ def seed_create(request):
 			)
 			seed.save()
 
-			update_seed_events(seed, seed_form.cleaned_data['events'])
+#			update_seed_events(seed, seed_form.cleaned_data['events'])
 
 			return redirect('views-seed_create_confirm')
 		
@@ -72,7 +72,7 @@ def seeds(request):
 		context_instance=RequestContext(request))
 
 def fill_seed_from_form(seed, form):
-	seed.seed_type = form.cleaned_data['seed_type']
+#	seed.seed_type = form.cleaned_data['seed_type']
 	seed.crop_type = form.cleaned_data['crop_type']
 	seed.seed_variety = form.cleaned_data['seed_variety']
 	seed.seed_description = form.cleaned_data['seed_description']
@@ -150,7 +150,7 @@ def seed_edit(request, id):
 			fill_seed_from_form(seed, form)
 			seed.save()
 
-			update_seed_events(seed, form.cleaned_data['events'])
+#			update_seed_events(seed, form.cleaned_data['events'])
 
 			return redirect('views-seeds')
 	else:
