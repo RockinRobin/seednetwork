@@ -6,6 +6,7 @@
 
 	  
     {% if user.is_authenticated %}
+		Includes introduction to the site, directions for use
         <h3><a href="{% url 'views-seed_create' %}">Add a new seed</a> or 
          <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">Browse all seeds</a> or 
 		 Search for seeds, towns, or members below:

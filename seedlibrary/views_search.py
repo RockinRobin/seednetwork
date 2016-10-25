@@ -10,8 +10,10 @@ def seed_search(request):
 	query = ''
 	seed_list = []
 	archived_checked = ""
-
-	if request.method=='POST':
+        if request.method=='GET':
+                seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
+                seed_list = seed_list.filter(archived=False)
+	elif request.method=='POST':
 		query = request.POST['q']
 		seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
 
@@ -32,7 +34,6 @@ def seed_search(request):
 				Q(seed_type__icontains=word)|
 				Q(crop_type__icontains=word)|
 				Q(seed_variety__icontains=word)|
-				Q(user__memberinfo__town__icontains=word)|
 				Q(user__username__icontains=word)
 			)
 

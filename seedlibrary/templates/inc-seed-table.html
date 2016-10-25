@@ -1,15 +1,15 @@
 <table class="results">
     <tr><th>Type</th>
-        <th>Crop</th>
-        <th>Variety</th>
+        <th>Grain</th>
+        <th>Grain Variety</th>
         <th>Year</th>
-        <th>Origin</th>
-        <th>Share</th>
-        <th>Description</th>
+        <th>Source</th>
+        <th>Available</th>
         {% if full %}
         <th>Member</th>
-        <th>Town</th>
+        <th>Phone</th>
         {% endif %}
+        <th>Grain Description</th>
         <th>Actions</th></tr>
     {% for seed in seed_list_for_table %}
         <tr>
@@ -19,7 +19,6 @@
             <td>{{ seed.year }}</td>
             <td>{{ seed.origin }}</td>
             <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
-            <td>{{ seed.seed_description }} </td>
 
             {% if full %}
             {% with seed.user.memberinfo_set.all|first as mi %}
@@ -30,9 +29,13 @@
                         {{ seed.user.username }}
                     {% endif %}
                 </td>
-                <td>{{ mi.town }}</td>
+                <td>
+                    {{mi.phone}}
+                </td>
             {% endwith %}
             {% endif %}
+            <td>{{ seed.seed_description }} </td>
+
             <td>
                 {% ifequal seed.user.username user.username %}
                     <a href="{% url 'views-seed_edit' id=seed.id %}">Edit</a>

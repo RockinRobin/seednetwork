@@ -7,8 +7,6 @@ class MemberInfo(models.Model):
 	user = models.ForeignKey(User)
 	email_is_public = models.BooleanField(default=True)
 
-	town = models.CharField(max_length=150, blank=True)
-
 	phone = models.CharField(max_length=150, blank=True)
 	phone_is_public = models.BooleanField(default=True)
 
