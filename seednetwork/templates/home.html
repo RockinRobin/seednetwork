@@ -1,12 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Hilltown Virtual Seed Bank{% endblock %}
-{% block pagetitle %}Welcome to the Hilltown Virtual Seed Bank{% endblock %}
+{% block title %}Heritage Grain Collective  Virtual Seed Bank{% endblock %}
+{% block pagetitle %}Welcome to the Heritage Grain Collective Virtual Seed Bank{% endblock %}
 {% block content %}
-
-
+<p>
+Around the country farmers and gardeners are rediscovering the importance and pleasure of growing heritage and landrace grains. Their flavor, high nutrient content, adaptability to a range of conditions, and interesting histories compel us to become involved in a time of climate change and alarming loss of diversity.
+<br /><br />
+This site offers the opportunity to share your knowledge and experience and to network with other growers. You can use your profile page to tell others about yourself and your work, describe the varieties you grow and the scope of your projects, and initiate collaboration on trials. One of our primary objectives in launching this site is to promote the sharing of seeds. We hope members' seed trials will help identify outstanding varieties that can be shared with farmers, grown out in larger quantity, and tested for baking qualities.
+<br /><br />
+Visit our associated wiki  page to read more about our mission and for valuable resources, growing recommendations, and sources for rare varieties from US and international seed banks. We welcome members' contributions to the wiki.
+<br /><br />
+The founders of this website are Sylvia Davatz and Ruth Fleishman, but we've had help from many colleagues in this effort and are especially grateful to Eli Rogosa for her pioneering work in reviving interest in heritage grains.
+</p>
 	  
     {% if user.is_authenticated %}
-		Includes introduction to the site, directions for use
+		User is logged in.
         <h3><a href="{% url 'views-seed_create' %}">Add a new seed</a> or 
          <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">Browse all seeds</a> or 
 		 Search for seeds, towns, or members below:
@@ -15,21 +22,13 @@
         </form></p>
     {% else %}
 	
-	<p>
-	  The Hilltown Seed Saving Network is a group of people in the Hilltowns of Western Massachusetts interested in saving seeds. 
-	    <br />
-      We are working to educate ourselves and our neighbors about seed saving. Our virtual seed bank 
-	  is for sharing information about what seeds we have in our own collections and how best to grow them in this region.
-We are from Cummington, Chesterfield, Plainfield, Worthington, Windsor, Goshen, Ashfield and surrounding towns in the region and 
-meet monthly in Cummington. More information about our group's goals, activities and events can be found <a href="http://google.com/"> HERE on google.com</a>. Please join us.	  <br />
-<br />
-<em>If you are from outside of the Hilltowns, you may want to explore the seed sharing opportunities at  the <a href="http://www.seedsavers.org/Membership/" target="_blank">Seed Savers Exchange</a>.</em></p>
-	  
+       <p>
+       Register and log in to begin listing seeds and browsing the offerings of other members. 
+       </p>
 	<h2>  Login or Register to use the Virtual Seed Bank. </h2>
         <table>
         <tr>
         <td width="298" height="714" valign="top">
-
             <span class="sectionheader">Member Login:</span>
             <form method="post" action="{% url 'auth-views-login' %}">
             <table>{% csrf_token %}
