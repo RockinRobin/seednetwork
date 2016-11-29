@@ -29,7 +29,7 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="(if different from street address)")
 	mailing_address_is_public = forms.BooleanField(required=False, initial=True)
 
-	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False)
+	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="i.e. Describe your work, interests, projects, growing conditions, etc")
 	include_in_member_profiles = forms.BooleanField(required=False, initial=True)
 
 class SeedNetworkAuthForm(AuthenticationForm):
