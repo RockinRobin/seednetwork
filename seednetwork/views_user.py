@@ -7,6 +7,7 @@ from django.template import RequestContext
 
 from seednetwork.forms import MemberInfoForm
 from seednetwork.models import MemberInfo
+from seedlibrary.models import Seed
 
 def get_memberinfo(u):
 	mi_list = MemberInfo.objects.filter(user=u)
@@ -112,9 +113,9 @@ def edit_profile(request):
 @login_required
 def member(request, mid):
 	memberinfo = get_object_or_404(MemberInfo, pk=mid)
-
+        seed_list = Seed.objects.filter(user=mid, archived=False)
 	return render_to_response('member.html',
-			{ "memberinfo":memberinfo },
+			{ "memberinfo":memberinfo, "seed_list": seed_list },
 			                  context_instance=RequestContext(request))
 
 
