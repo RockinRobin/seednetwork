@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Seed Bank: Search{% endblock %}
-{% block pagetitle %}Search{% endblock %}
+{% block pagetitle %}Browse Seeds{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
         <form  class="searchform" method="post" action="{% url 'views_search-seed_search' %}">{% csrf_token %}

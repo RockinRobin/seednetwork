@@ -30,10 +30,10 @@
                      <a href="{% url 'views_user-members' %}">Members</a>
                      <a href="{% url 'views_search-seed_search' %}">Browse Seeds</a>
                      <a href="{% url 'views-seed_create' %}">Add Seed</a>
-                     <a href="{% url 'views_user-profile' %}">My profile</a>
-                     <a href="{% url 'views-seeds' %}">My seeds</a>
+                     <a href="{% url 'views_user-profile' %}">My Profile</a>
+                     <a href="{% url 'views-seeds' %}">My Seeds</a>
 
-                    <a href="{% url 'auth-views-logout' %}">Log out</a>
+                    <a href="{% url 'auth-views-logout' %}">Log Out</a>
                     {% if user.is_staff %}
                          <a href="/admin">Admin Panel</a> 
                     {% endif %}
