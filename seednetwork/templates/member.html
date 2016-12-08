@@ -23,6 +23,13 @@
         <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
         </table>
         <br/>
+               <h2>{{memberinfo.user.username}}'s Active Seeds</h2>
+               <p> {{ seed_list.count }} seed{{ seed_list.count|pluralize }} listed:</p>
+          {% if seed_list %}
+               {% with seed_list_for_table=seed_list full=False %}
+               {% include 'inc-seed-table.html' %}
+               {% endwith %}
+          {% endif %}
     {% else %}
         <p>This member is private</p>
     {% endif %}
