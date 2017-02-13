@@ -41,7 +41,7 @@
                             {% endif %}
                         </td>
 						 <td>{% if mi.street_address_is_public %}
-                                {{ mi.street_address }}
+                                {{ mi.clean_street_address }}
                             {% else %}
                                 <em>(private)</em>
                             {% endif %}

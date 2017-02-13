@@ -15,7 +15,7 @@
                 <tr><th>Phone:</th><td>{{ memberinfo.phone }}</td></tr>
             {% endif %}
             {% if memberinfo.street_address_is_public %}
-                <tr><th>Street Address:</th><td>{{ memberinfo.street_address }}</td></tr>
+                <tr><th>Street Address:</th><td>{{ memberinfo.clean_street_address }}</td></tr>
             {% endif %}
             {% if memberinfo.mailing_address_is_public %}
                 <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }}</td></tr>
