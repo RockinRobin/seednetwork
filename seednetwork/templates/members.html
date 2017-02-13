@@ -7,6 +7,7 @@
             <tr>
                 <th>Username</th>
 				<th>Full Name</th>
+                <th>USDA zone</th>
                 <th>Email</th>
                 <th>Phone</th>
 				<th>Street Address</th>
@@ -27,6 +28,8 @@
                    </td>
                    {% if mi.include_in_member_profiles %}
                         <td>{{ mi.user.first_name }} {{ mi.user.last_name }} </td>
+						
+                        <td>{{ mi.usda_zone }} </td>
 						
                         <td>{% if mi.email_is_public %}
                                 <a href="mailto:{{ mi.user.email }}">{{ mi.user.email }}</a>

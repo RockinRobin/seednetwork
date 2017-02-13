@@ -7,6 +7,7 @@
         <tr><td><b>Username:</b></td><td>{{ user.username }}</td></tr>
         <tr><td><b>First name:</b></td><td>{{ user.first_name }}</td></tr>
         <tr><td><b>Last name:</b></td><td>{{ user.last_name }}</td></tr>
+        <tr><td><b>USDA zone:</b></td><td>{{ memberinfo.usda_zone }}</td></tr>
         <tr><td><b>E-mail:</b></td><td>{{ user.email }} <em>({% if memberinfo.email_is_public %}public{% else %}private{% endif %})</em></td></tr>
         <tr><td><b>Phone:</b></td><td>{{ memberinfo.phone }} <em>({% if memberinfo.phone_is_public %}public{% else %}private{% endif %})</em></td></tr>
         <tr><td><b>Street Address:</b></td><td>{{ memberinfo.clean_street_address }} <em>({% if memberinfo.street_address_is_public %}public{% else %}private{% endif %})</em></td></tr>

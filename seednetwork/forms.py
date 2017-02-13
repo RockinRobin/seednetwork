@@ -3,6 +3,34 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from localflavor.us.forms import USPhoneNumberField, USStateField, USZipCodeField, USStateSelect
 from generic.forms import CountryField, CountrySelect  
 
+USDA_ZONE_CHOICES = (
+	('-', '-'),
+	('1a', '1a'),
+	('1b', '1b'),
+	('2a', '2a'),
+	('2b', '2b'),
+	('3a', '3a'),
+	('3b', '3b'),
+	('4a', '4a'),
+	('4b', '4b'),
+	('5a', '5a'),
+	('5b', '5b'),
+	('6a', '6a'),
+	('6b', '6b'),
+	('7a', '7a'),
+	('7b', '7b'),
+	('8a', '8a'),
+	('8b', '8b'),
+	('9a', '9a'),
+	('9b', '9b'),
+	('10a', '10a'),
+	('10b', '10b'),
+	('11a', '11a'),
+	('11b', '11b'),
+	('12a', '12a'),
+	('12b', '12b')
+)
+
 def as_table_func(self):
 	return self._html_output(
 		normal_row = '<tr%(html_class_attr)s><th>%(label)s</th><td>%(field)s%(errors)s%(help_text)s</td></tr>',
@@ -20,6 +48,7 @@ class SeedNetworkBaseForm(forms.Form):
 class MemberInfoForm(SeedNetworkBaseForm):
 	first_name = forms.CharField(max_length=150, required=True)
 	last_name = forms.CharField(max_length=150, required=True)
+	usda_zone =forms.ChoiceField(required=False, choices=USDA_ZONE_CHOICES)
 	email = forms.CharField(max_length=150, required=True)
 	email_is_public = forms.BooleanField(required=False, initial=True)
 	phone = USPhoneNumberField(max_length=150, required=False)
