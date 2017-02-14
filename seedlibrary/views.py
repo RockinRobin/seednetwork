@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
-from seedlibrary.forms import SeedForm, SeedExportForm
+from seedlibrary.forms import GrainForm, SeedExportForm
 from seedlibrary.models import Seed, Event
 
 from datetime import datetime, timedelta
@@ -27,9 +27,9 @@ def update_seed_events(seed, all_checked_events):
 
 @login_required
 def seed_create(request):
-	seed_form = SeedForm()  
+	seed_form = GrainForm()  
 	if request.method == 'POST':
-		seed_form = SeedForm(request.POST)
+		seed_form = GrainForm(request.POST)
 		if seed_form.is_valid():
 
 			seed = Seed.objects.create(
