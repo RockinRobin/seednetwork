@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
-from seedlibrary.forms import GrainForm, SeedExportForm
+from seedlibrary.forms import GrainForm, SeedExportForm, ExtendedGrainForm
 from seedlibrary.models import Seed, Event
 
 from datetime import datetime, timedelta
@@ -27,7 +27,8 @@ def update_seed_events(seed, all_checked_events):
 
 @login_required
 def seed_create(request):
-	seed_form = GrainForm()  
+	seed_form = GrainForm()
+	seed_form_extended = ExtendedGrainForm()  
 	if request.method == 'POST':
 		seed_form = GrainForm(request.POST)
 		if seed_form.is_valid():
@@ -50,7 +51,7 @@ def seed_create(request):
 		
 
 	return render_to_response('seed-create.html',
-		{"seed_form":seed_form},
+		{"seed_form":seed_form,"seed_form_extended":seed_form_extended},
 		context_instance=RequestContext(request))
 	
 
@@ -145,7 +146,8 @@ def seed_edit(request, id):
 	error = None
 
 	if request.method == 'POST':
-		form = SeedForm(request.POST)
+		form = GrainForm(request.POST)
+		extended_form=ExtendedGrainForm(request.POST)
 		if form.is_valid():
 			fill_seed_from_form(seed, form)
 			seed.save()
@@ -167,10 +169,11 @@ def seed_edit(request, id):
 			e_ids.append(e.id)
 		data['events'] = e_ids
 
-		form = SeedForm(data)
+		form = GrainForm(data)
+		extended_form = ExtendedGrainForm(data)
 
 	return render_to_response('seed-edit.html',
-		{ "seed":seed, "form": form, "error": error },
+		{ "seed":seed, "form": form, "extended_form": extended_form, "error": error },
         context_instance=RequestContext(request))
 
 @login_required
