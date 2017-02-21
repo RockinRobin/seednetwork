@@ -8,6 +8,7 @@
         <tr><th>Username:</th><td>{{ memberinfo.user.username }}</td></tr>
         <tr><th>First name:</th><td>{{ memberinfo.user.first_name }}</td></tr>
         <tr><th>Last name:</th><td>{{ memberinfo.user.last_name }}</td></tr>
+        <tr><th>USDA zone:</th><td>{{ memberinfo.usda_zone }}</td></tr>
             {% if memberinfo.email_is_public %}
                 <tr><th>e-mail:</th><td><a href="mailto:{{ memberinfo.user.email }}">{{ memberinfo.user.email }}</a></td></tr>
             {% endif %}
@@ -15,7 +16,7 @@
                 <tr><th>Phone:</th><td>{{ memberinfo.phone }}</td></tr>
             {% endif %}
             {% if memberinfo.street_address_is_public %}
-                <tr><th>Street Address:</th><td>{{ memberinfo.street_address }}</td></tr>
+                <tr><th>Street Address:</th><td>{{ memberinfo.clean_street_address }}</td></tr>
             {% endif %}
             {% if memberinfo.mailing_address_is_public %}
                 <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }}</td></tr>

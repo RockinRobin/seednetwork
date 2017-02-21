@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
-from seedlibrary.forms import SeedForm, SeedExportForm
-from seedlibrary.models import Seed, Event
+from seedlibrary.forms import GrainForm, SeedExportForm, ExtendedGrainForm
+from seedlibrary.models import Seed, Event, ExtendedView
 
 from datetime import datetime, timedelta
 
@@ -25,32 +25,59 @@ def update_seed_events(seed, all_checked_events):
 		else:
 			e.seed.remove(seed)
 
+
+
 @login_required
 def seed_create(request):
-	seed_form = SeedForm()  
+	seed_form = GrainForm()
+	seed_form_extended = ExtendedGrainForm()  
 	if request.method == 'POST':
-		seed_form = SeedForm(request.POST)
+		seed_form = GrainForm(request.POST)
+                seed_form_extended = ExtendedGrainForm(request.POST)
 		if seed_form.is_valid():
 
 			seed = Seed.objects.create(
 				user = request.user,
-			#	seed_type = seed_form.cleaned_data['seed_type'],
+				seed_type = 'grain',
 				crop_type = seed_form.cleaned_data['crop_type'],
 				seed_variety = seed_form.cleaned_data['seed_variety'],
 				seed_description = seed_form.cleaned_data['seed_description'],
 				enough_to_share = seed_form.cleaned_data['enough_to_share'],
 				year = seed_form.cleaned_data['year'],
-				origin = seed_form.cleaned_data['origin']
+				origin = seed_form.cleaned_data['origin'],
+                                more_info = seed_form.cleaned_data['more_info']
 			)
 			seed.save()
+                        if not seed.more_info:
+                               return redirect('views-seed_create_confirm')
+                
+                if seed_form.is_valid() and seed.more_info and seed_form_extended.is_valid():
+                        extended_seed = ExtendedView.objects.create(
+                                parent_seed = seed,
+                                grain_subcategory = seed_form_extended.cleaned_data['grain_subcategory'],
+                                breed = seed_form_extended.cleaned_data['breed'],
+                                plant_timing = seed_form_extended.cleaned_data['plant_timing'],
+                                lodging = seed_form_extended.cleaned_data['lodging'],
+                                lodging_percent = seed_form_extended.cleaned_data['lodging_percent'],
+                                disease = seed_form_extended.cleaned_data['disease'],
+                                days_to_maturity = seed_form_extended.cleaned_data['days_to_maturity'],
+                                threshing = seed_form_extended.cleaned_data['threshing'],
+                                cold_hardiness = seed_form_extended.cleaned_data['cold_hardiness'],
+                                culinary_qualities = seed_form_extended.cleaned_data['culinary_qualities'],
+                                other_traits = seed_form_extended.cleaned_data['other_traits'],
+                                external_url = seed_form_extended.cleaned_data['external_url']
+                        )
 
+                        extended_seed.save()
+
+                        
 #			update_seed_events(seed, seed_form.cleaned_data['events'])
 
 			return redirect('views-seed_create_confirm')
 		
 
 	return render_to_response('seed-create.html',
-		{"seed_form":seed_form},
+		{"seed_form":seed_form,"seed_form_extended":seed_form_extended},
 		context_instance=RequestContext(request))
 	
 
@@ -79,6 +106,22 @@ def fill_seed_from_form(seed, form):
 	seed.enough_to_share = form.cleaned_data['enough_to_share']
 	seed.year = form.cleaned_data['year']
 	seed.origin = form.cleaned_data['origin']
+        seed.more_info = form.cleaned_data['more_info']
+
+def fill_ev_from_evform(extended_view, evform):
+        extended_view.grain_subcategory = evform.cleaned_data['grain_subcategory']
+        extended_view.breed = evform.cleaned_data['breed']
+        extended_view.plant_timing = evform.cleaned_data['plant_timing']
+        extended_view.lodging = evform.cleaned_data['lodging']
+        extended_view.lodging_percent = evform.cleaned_data['lodging_percent']
+        extended_view.disease = evform.cleaned_data['disease']
+        extended_view.days_to_maturity = evform.cleaned_data['days_to_maturity']
+        extended_view.threshing = evform.cleaned_data['threshing']
+        extended_view.cold_hardiness = evform.cleaned_data['cold_hardiness']
+        extended_view.culinary_qualities = evform.cleaned_data['culinary_qualities']
+        extended_view.other_traits = evform.cleaned_data['other_traits']
+        extended_view.external_url = evform.cleaned_data['external_url']
+
 
 @login_required
 def seed_export(request):
@@ -142,16 +185,26 @@ def seeds_as_csv_to_response(seed_list):
 @login_required
 def seed_edit(request, id):
 	seed = get_object_or_404(Seed, pk=id)
+        try:
+                extended_view = seed.extendedview_set.get()
+        except:
+                extended_view = ExtendedView(parent_seed = seed)
+
 	error = None
 
 	if request.method == 'POST':
-		form = SeedForm(request.POST)
+		form = GrainForm(request.POST)
+		extended_form=ExtendedGrainForm(request.POST)
 		if form.is_valid():
 			fill_seed_from_form(seed, form)
 			seed.save()
-
+                if extended_form.is_valid():
+			fill_ev_from_evform(extended_view, extended_form)
+                        extended_view.save()
+                if not seed.more_info and len(seed.extendedview_set.all()) != 0:
+                        extended_view.delete()
 #			update_seed_events(seed, form.cleaned_data['events'])
-
+                if form.is_valid() and extended_form.is_valid():
 			return redirect('views-seeds')
 	else:
 		data = {}
@@ -162,15 +215,30 @@ def seed_edit(request, id):
 		data['enough_to_share'] = seed.enough_to_share
 		data['year'] = seed.year
 		data['origin'] = seed.origin
+                data['more_info'] = seed.more_info
+                if seed.more_info:
+                       data['grain_subcategory'] = extended_view.grain_subcategory
+                       data['breed']=extended_view.breed
+                       data['plant_timing']=extended_view.plant_timing
+                       data['lodging']=extended_view.lodging
+                       data['lodging_percent']=extended_view.lodging_percent
+                       data['disease']=extended_view.disease
+                       data['days_to_maturity']=extended_view.days_to_maturity
+                       data['threshing']=extended_view.threshing
+                       data['cold_hardiness']=extended_view.cold_hardiness
+                       data['culinary_qualities']=extended_view.culinary_qualities
+                       data['other_traits']=extended_view.other_traits
+                       data['external_url']=extended_view.external_url
 		e_ids = []
 		for e in seed.event_set.all():
 			e_ids.append(e.id)
 		data['events'] = e_ids
 
-		form = SeedForm(data)
+		form = GrainForm(data)
+		extended_form = ExtendedGrainForm(data)
 
 	return render_to_response('seed-edit.html',
-		{ "seed":seed, "form": form, "error": error },
+		{ "seed":seed, "form": form, "extended_form": extended_form, "error": error },
         context_instance=RequestContext(request))
 
 @login_required
@@ -191,6 +259,24 @@ def seed_confirm_archive(request, id):
 	return render_to_response('seed-confirm-archive.html',
 			{ "seed":seed, "error": error },
 			context_instance=RequestContext(request))
+
+
+@login_required
+def seed_profile(request, id):
+	seed = get_object_or_404(Seed, pk=id)
+        ev = seed.extendedview_set.get()
+        return render_to_response('seed-profile.html',
+                        {"seed":seed, "ev": ev},
+                        context_instance=RequestContext(request))
+
+
+
+
+
+
+
+
+
 
 @login_required
 def events(request):

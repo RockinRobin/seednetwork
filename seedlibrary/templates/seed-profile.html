@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Seed bank: Seed Profile{% endblock %}
+{% block pagetitle %}{{seed.user.username}}'s {{seed.seed_variety}} Grain Profile{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <table class="form">
+        <tr><td><b>Grain:</b></td><td>{{seed.crop_type}}</td></tr>
+        <tr><td><b>Grain variety:</b></td><td>{{seed.seed_variety}}</td></tr>
+        <tr><td><b>Grain description:</b></td><td>{{seed.seed_description}}</td></tr>
+        <tr><td><b>enough_to_share:</b></td><td>{{seed.enough_to_share}}</td></tr>
+        <tr><td><b>year:</b></td><td>{{seed.year}}</td></tr>
+        <tr><td><b>origin:</b></td><td>{{seed.origin}}</td></tr>
+        <tr><td><b>grain_subcategory:</b></td><td>{{ev.grain_subcategory}}</td></tr>
+        <tr><td><b>breed:</b></td><td>{{ev.breed}}</td></tr>
+        <tr><td><b>plant_timing:</b></td><td>{{ev.plant_timing}}</td></tr>
+        <tr><td><b>lodging:</b></td><td>{{ev.lodging}}</td></tr>
+        <tr><td><b>lodging_percent:</b></td><td>{{ev.lodging_percent}}</td></tr>
+        <tr><td><b>disease:</b></td><td>{{ev.disease}}</td></tr>
+        <tr><td><b>days_to_maturity:</b></td><td>{{ev.days_to_maturity}}</td></tr>
+        <tr><td><b>threshing:</b></td><td>{{ev.threshing}}</td></tr>
+        <tr><td><b>cold_hardiness:</b></td><td>{{ev.cold_hardiness}}</td></tr>
+        <tr><td><b>culinary_qualities:</b></td><td>{{ ev.culinary_qualities}}</td></tr>
+        <tr><td><b>other_traits:</b></td><td>{{ ev.other_traits }}</td></tr>
+        <tr><td><b>external_url:</b></td><td><a href = "{{ ev.external_url }}">{{ev.external_url}}</a></td></tr>
+        <tr><td><b>Username:</b></td><td>{{ seed.user.username}}</td></tr>
+        </table>
+        <br/>
+    {% if user.id == seed.user.id %}
+        <a href="{% url 'views-seed_edit' id=seed.id %}">Edit Grain</a> 
+    {% else %}
+    {% endif %}
+    {% else %}
+    {% endif %}
+{% endblock %}

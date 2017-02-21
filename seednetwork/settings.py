@@ -135,6 +135,7 @@ WSGI_APPLICATION = 'seednetwork.wsgi.application'
 INSTALLED_APPS = (
     'seedlibrary',
     'seednetwork',
+    'localflavor',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

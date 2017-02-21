@@ -1,16 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Seed Bank: Add a New Seed {% endblock %}
-{% block pagetitle %}Add a New Seed{% endblock %}
+{% block title %}Grain Bank: Add a New Grain {% endblock %}
+{% block pagetitle %}Add a New Grain{% endblock %}
 
 {% block content %}
    
-        <h3>List your seed! (one variety per form, please)</h3>
+        <h3>List your grain! (one variety per form, please)</h3>
         <form action="." method="post">{% csrf_token %}
             <table>
 			{{  seed_form.as_table }}
 			</table>
+            <table id="extended_form">
+			{{  seed_form_extended.as_table }}
+			</table>
                 <input type="submit"  value="Submit Seed" />
-            
         </form>
-    
 {%endblock%}

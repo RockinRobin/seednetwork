@@ -21,11 +21,15 @@ def get_memberinfo(u):
 	return mi
 
 def fill_member_from_form(mi, form):
+	mi.usda_zone = form.cleaned_data['usda_zone']
 	mi.email_is_public = form.cleaned_data['email_is_public']
 	mi.phone = form.cleaned_data['phone']
 	mi.phone_is_public = form.cleaned_data['phone_is_public']
-
-	mi.street_address = form.cleaned_data['street_address']
+        country_code = form.cleaned_data['country_code']
+        if country_code == "US":
+                mi.street_address = '~ '.join([form.cleaned_data['street_line'],form.cleaned_data['state'], form.cleaned_data['zipcode'], country_code])
+        else:
+                mi.street_address = 'International address~ ' + country_code
 	mi.street_address_is_public = form.cleaned_data['street_address_is_public']
 	mi.mailing_address = form.cleaned_data['mailing_address']
 	mi.mailing_address_is_public = form.cleaned_data['mailing_address_is_public']
@@ -93,11 +97,29 @@ def edit_profile(request):
 		data = {}
 		data['first_name'] = user.first_name
 		data['last_name'] = user.last_name
+		data['usda_zone'] = mi.usda_zone
 		data['email'] = user.email
 		data['email_is_public'] = mi.email_is_public
 		data['phone'] = mi.phone
 		data['phone_is_public'] = mi.phone_is_public
-		data['street_address'] = mi.street_address
+                try:
+                	sl,cc=mi.street_address.rsplit('~ ',1)
+		except:
+			sl = mi.street_address
+			cc = "US"
+                data['country_code']= cc
+                if cc == 'US':
+			try:
+				sl, s, z = sl.split('~ ',2)
+			except:
+				sl = sl
+				s = "AL"
+				z = "11111"
+                	data['street_line'] = sl
+                	data['state'] = s
+                	data['zipcode'] = z
+                else:
+                        data['street_line'] = sl
 		data['street_address_is_public'] = mi.street_address_is_public
 		data['mailing_address'] = mi.mailing_address
 		data['mailing_address_is_public'] = mi.mailing_address_is_public
