@@ -102,7 +102,11 @@ def edit_profile(request):
 		data['email_is_public'] = mi.email_is_public
 		data['phone'] = mi.phone
 		data['phone_is_public'] = mi.phone_is_public
-                sl,cc=mi.street_address.rsplit('~ ',1)
+                try:
+                	sl,cc=mi.street_address.rsplit('~ ',1)
+		except:
+			sl = mi.street_address
+			cc = "US"
                 data['country_code']= cc
                 if cc == 'US':
 			sl, s, z = sl.split('~ ',2)
