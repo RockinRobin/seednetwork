@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seedlibrary', '0002_auto_20170219_2058'),
+        ('seedlibrary', '0002_add_extendedview'),
     ]
 
     operations = [
