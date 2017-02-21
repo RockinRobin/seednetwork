@@ -1,21 +1,26 @@
 <table class="results">
-    <tr><th>Type</th>
+    <tr>
         <th>Grain</th>
-        <th>Grain Variety</th>
+        <th>Variety Name</th>
         <th>Year</th>
         <th>Source</th>
-        <th>Available</th>
+        <th>Availability</th>
         {% if full %}
         <th>Member</th>
-        <th>Phone</th>
+        <th>USDA zone</th>
         {% endif %}
-        <th>Grain Description</th>
+        <th>Short Description</th>
         <th>Actions</th></tr>
     {% for seed in seed_list_for_table %}
         <tr>
-            <td>{{ seed.seed_type }}</td>
             <td>{{ seed.crop_type }}</td>
-            <td>{{ seed.seed_variety }}</td>
+            <td>
+                {% if seed.more_info %}
+                        <a href="{% url 'views-seed_profile' id=seed.id %}">{{ seed.seed_variety }}</a>
+                {% else %}
+                        {{ seed.seed_variety }}
+                {% endif %}
+            </td>
             <td>{{ seed.year }}</td>
             <td>{{ seed.origin }}</td>
             <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
@@ -30,7 +35,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    {{mi.phone}}
+                    {{mi.usda_zone}}
                 </td>
             {% endwith %}
             {% endif %}

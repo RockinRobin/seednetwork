@@ -14,12 +14,28 @@ class Seed(models.Model):
 
      archived = models.BooleanField(default=False, blank=False)
 
+     more_info = models.BooleanField(default=False)
+
      def __unicode__(self):
          return self.user.username + "\'s " + self.seed_type 
 
      def __str__(self):
          return self.user.username + "\'s " + self.seed_type 
 
+class ExtendedView(models.Model):
+     parent_seed = models.ForeignKey(Seed)
+     grain_subcategory=models.CharField(max_length=50, blank=True)
+     breed = models.CharField(max_length=30, blank=True)
+     plant_timing = models.CharField(max_length=30, blank=True)
+     lodging = models.CharField(max_length=30, blank=True)
+     lodging_percent = models.DecimalField(max_digits=4,decimal_places=2, blank=True)
+     disease = models.CharField(max_length=150, blank=True)
+     days_to_maturity = models.IntegerField(blank=True)
+     threshing = models.CharField(max_length=150, blank=True)
+     cold_hardiness = models.CharField(max_length=150, blank=True)
+     culinary_qualities = models.CharField(max_length=150, blank=True)
+     other_traits = models.CharField(max_length=150, blank=True)
+     external_url = models.URLField(blank=True) 
 
 class Event(models.Model):
 	name = models.CharField(max_length=150, blank=True)

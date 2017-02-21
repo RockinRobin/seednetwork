@@ -25,7 +25,7 @@ GRAIN_CHOICES = (
         ('teff', 'Teff'),
         ('triticale', 'Triticale'),
         ('wheat', 'Wheat'),
-        ('wild_rice', 'Wild Rice')
+        ('wild rice', 'Wild rice')
 )
 
 GRAIN_SUBCATEGORIES = (
@@ -60,7 +60,7 @@ GRAIN_SUBCATEGORIES = (
         ('q1', 'Quinoa: q1'),
         ('q2', 'Quinoa: q2'),
         ('ri1', 'Rice: ri1'),
-        ('ri2', 'Ricei: ri2'),
+        ('ri2', 'Rice: ri2'),
         ('ry1', 'Rye: ry1'),
         ('ry2', 'Rye: ry2'),
         ('so1', 'Sorghum: so1'),
@@ -73,8 +73,8 @@ GRAIN_SUBCATEGORIES = (
         ('tr2', 'Triticale: tr2'),
         ('wh1', 'Wheat: wh1'),
         ('wh2', 'Wheat: wh2'),
-        ('wi1', 'Wild Rice: wi1'),
-        ('wi2', 'Wild Rice: wi2')
+        ('wi1', 'Wild rice: wi1'),
+        ('wi2', 'Wild rice: wi2')
 )
 	
 
@@ -84,11 +84,11 @@ GRAIN_SUBCATEGORIES = (
 class GrainForm(SeedNetworkBaseForm):
 #	seed_type = forms.CharField(label="Seed Type", max_length=150, required=False, help_text="i.e. grain, vegetable, herb, perennial, fruit bush, fruit tree, etc.")
 	crop_type = forms.ChoiceField(label="Grain", choices=GRAIN_CHOICES, required=False)
-	seed_variety = forms.CharField(label="Grain Variety", max_length=150, required=False, help_text="i.e. Ukrainka, PI 356457 etc.")
-	seed_description = forms.CharField(label="Grain Description", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Landrace or cultivar?, When planted (S/F/Fac)?, Lodging?, Disease? Days to maturity? Threshing? Baking/Cooking Qualities? Cold Hardiness? Other traits? etc.")
-	enough_to_share = forms.BooleanField(label="Available", required=False, help_text="Is seed available for purchase/free?")
-	year = forms.CharField(label="Year", max_length=150, required=False, help_text="When did you grow out this seed?")
-	origin = forms.CharField(label="Source", max_length=150, required=False, help_text="When and from whom  did you first obtain the seed?")
+	seed_variety = forms.CharField(label="Grain Variety", max_length=150, required=False, help_text="e.g.. Ukrainka, PI 356457 etc.")
+	seed_description = forms.CharField(label="Grain Description", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Short headline (<75 chars) Longer descriptions available in \"More Info\". ")
+	enough_to_share = forms.BooleanField(label="Available", required=False, help_text="Is seed available for purchase/free? Please indicate terms on member profile page.")
+	year = forms.CharField(label="Year", max_length=150, required=False, help_text="What year was your seed grown?")
+	origin = forms.CharField(label="Source", max_length=150, required=False, help_text="The year and from whom you first obtain the seed.")
 #	events = forms.ModelMultipleChoiceField(Event.objects.filter(show_on_seed_edit=True), required=False, widget=forms.CheckboxSelectMultiple, help_text="What events will you bring the seed to?")
 	more_info = forms.BooleanField(label="More Information", required=False, help_text="Do you want to provide more detailed information?")
 
@@ -103,7 +103,8 @@ class ExtendedGrainForm(SeedNetworkBaseForm):
 	threshing=forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="help text for threshing")
 	cold_hardiness=forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="help text for cold hardiness")
 	culinary_qualities=forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="help text for cooking/baking")
-	other_traits=forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="help text for other traits")
-	external_link=forms.URLField()
+	other_traits=forms.CharField(label="Uses", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Culinary?, Baking?, Livestock feed?, Straw for bedding?, Broom-making?, etc")
+	external_url=forms.URLField(required=False)
+
 class SeedExportForm(SeedNetworkBaseForm):
 	archive = forms.BooleanField(required=False, help_text="Do you want to export your archived seed listings?")
