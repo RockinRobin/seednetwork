@@ -113,8 +113,8 @@ def edit_profile(request):
 				sl, s, z = sl.split('~ ',2)
 			except:
 				sl = sl
-				s = AL
-				z = 11111
+				s = "AL"
+				z = "11111"
                 	data['street_line'] = sl
                 	data['state'] = s
                 	data['zipcode'] = z
