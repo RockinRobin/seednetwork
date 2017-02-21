@@ -109,7 +109,12 @@ def edit_profile(request):
 			cc = "US"
                 data['country_code']= cc
                 if cc == 'US':
-			sl, s, z = sl.split('~ ',2)
+			try:
+				sl, s, z = sl.split('~ ',2)
+			except:
+				sl = sl
+				s = AL
+				z = 11111
                 	data['street_line'] = sl
                 	data['state'] = s
                 	data['zipcode'] = z
