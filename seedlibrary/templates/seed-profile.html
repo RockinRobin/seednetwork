@@ -22,7 +22,7 @@
         <tr><td><b>culinary_qualities:</b></td><td>{{ ev.culinary_qualities}}</td></tr>
         <tr><td><b>other_traits:</b></td><td>{{ ev.other_traits }}</td></tr>
         <tr><td><b>external_url:</b></td><td><a href = "{{ ev.external_url }}">{{ev.external_url}}</a></td></tr>
-        <tr><td><b>Username:</b></td><td>{{ seed.user.username}}</td></tr>
+        <tr><td><b>Username:</b></td><td><a href="{% url 'views_user-member' mid=seed.user.memberinfo_set.get.id %}">{{ seed.user.username }}</a></td></tr>
         </table>
         <br/>
     {% if user.id == seed.user.id %}
