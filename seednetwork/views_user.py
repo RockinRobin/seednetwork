@@ -135,7 +135,9 @@ def edit_profile(request):
 @login_required
 def member(request, mid):
 	memberinfo = get_object_or_404(MemberInfo, pk=mid)
-        seed_list = Seed.objects.filter(user=mid, archived=False)
+        uid = memberinfo.user.id #The mid and uid have gotten out of sync in test db.
+	#TODO change all mid references to uid references. Be consistent.
+        seed_list = Seed.objects.filter(user=uid, archived=False)
 	return render_to_response('member.html',
 			{ "memberinfo":memberinfo, "seed_list": seed_list },
 			                  context_instance=RequestContext(request))
