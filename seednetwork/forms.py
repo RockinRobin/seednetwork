@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm
 from localflavor.us.forms import USPhoneNumberField, USStateField, USZipCodeField, USStateSelect
 from generic.forms import CountryField, CountrySelect  
 
@@ -44,8 +44,12 @@ class SeedNetworkBaseForm(forms.Form):
 		"Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
 		return as_table_func(self)
 
+class ModifiedUserCreationForm(UserCreationForm):
+	required_css_class = 'required'
+
 
 class MemberInfoForm(SeedNetworkBaseForm):
+	required_css_class = 'required'
 	first_name = forms.CharField(max_length=150, required=True)
 	last_name = forms.CharField(max_length=150, required=True)
 	usda_zone =forms.ChoiceField(required=False, choices=USDA_ZONE_CHOICES)
