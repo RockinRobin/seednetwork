@@ -126,3 +126,8 @@ table.results td, th{
 .searchform input[type=submit] {
     font-size: 120%;
 }
+
+label.required:before {
+ content: '* ';
+ color: red;
+ }

@@ -1,11 +1,11 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 
-from seednetwork.forms import MemberInfoForm
+from seednetwork.forms import MemberInfoForm, ModifiedUserCreationForm
 from seednetwork.models import MemberInfo
 from seedlibrary.models import Seed
 
@@ -40,7 +40,7 @@ def new_user(request):
 
 	if request.method == 'POST':
 		miform = MemberInfoForm(request.POST)
-		uiform = UserCreationForm(request.POST)
+		uiform = ModifiedUserCreationForm(request.POST)
 		if miform.is_valid() and uiform.is_valid():
 			user = User.objects.create_user(
 				uiform.cleaned_data['username'],
