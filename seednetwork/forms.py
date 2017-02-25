@@ -47,28 +47,32 @@ class SeedNetworkBaseForm(forms.Form):
 class ModifiedUserCreationForm(UserCreationForm):
 	required_css_class = 'required'
 
+	def __init__(self, *args, **kwargs):
+        	super(UserCreationForm, self).__init__(*args, **kwargs)
+
+            	self.fields['password2'].help_text = "Re-enter password for verification" 
 
 class MemberInfoForm(SeedNetworkBaseForm):
 	required_css_class = 'required'
 	first_name = forms.CharField(max_length=150, required=True)
 	last_name = forms.CharField(max_length=150, required=True)
-	usda_zone =forms.ChoiceField(required=False, choices=USDA_ZONE_CHOICES)
 	email = forms.CharField(max_length=150, required=True)
-	email_is_public = forms.BooleanField(required=False, initial=True)
+	email_is_public = forms.BooleanField( label = "Email is visible to members", required=False, initial=True)
+	usda_zone =forms.ChoiceField(label = "USDA zone", required=False, choices=USDA_ZONE_CHOICES)
 	phone = USPhoneNumberField(max_length=150, required=False)
-	phone_is_public = forms.BooleanField(required=False, initial=True)
+	phone_is_public = forms.BooleanField(label = "Phone is visible to members", required=False, initial=True)
         
         country_code = CountryField(required=True, widget=CountrySelect, label=None, initial='US', help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
-        street_line = forms.CharField(widget=forms.Textarea(attrs={'rows'    :'3', 'cols':'60'}), required=False)
+        street_line = forms.CharField(label="Street address", widget=forms.Textarea(attrs={'rows'    :'3', 'cols':'60'}), required=False)
         state = USStateField(required=False, widget=USStateSelect, label=None, initial=None, help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
         zipcode = USZipCodeField(max_length=None, min_length=None, required=False)
-	street_address_is_public = forms.BooleanField(required=False, initial=True)
+	street_address_is_public = forms.BooleanField(label = "Street address is visible to members", required=False, initial=True)
         
 	mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="(Optional for US addresses)")
-	mailing_address_is_public = forms.BooleanField(required=False, initial=True)
+	mailing_address_is_public = forms.BooleanField(label = "Mailing address is visible to members", required=False, initial=True)
 
-	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="i.e. Describe your work, interests, projects, growing conditions, etc")
-	include_in_member_profiles = forms.BooleanField(required=False, initial=True)
+	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and parment information.")
+	include_in_member_profiles = forms.BooleanField(label="Include in member index", required=False, initial=True)
 
 	def clean(self):
     		cleaned_data = super(MemberInfoForm, self).clean()
