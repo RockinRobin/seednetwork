@@ -6,75 +6,56 @@ GRAIN_CHOICES = (
         ('-','-'),
         ('amaranth','Amaranth'),
         ('barley', 'Barley'),
-        ('buckwheat', 'Buckwheat'),
-        ('bulghur', 'Bulghur'),
+#        ('buckwheat', 'Buckwheat'),
+#        ('bulghur', 'Bulghur'),
         ('corn', 'Corn'),
         ('einkorn', 'Einkorn'),
-        ('farro', 'Farro'),
-        ('fonio', 'Fonio'),
-        ('freekeh', 'Freekeh'),
-        ('kamut', 'Kamut'),
-        ('kaniwa', 'Kaniwa'),
+        ('emmer', 'Emmer'),
+#        ('fonio', 'Fonio'),
+#        ('freekeh', 'Freekeh'),
+#        ('kamut', 'Kamut'),
+#        ('kaniwa', 'Kaniwa'),
         ('millet', 'Millet'),
         ('oats', 'Oats'),
-        ('quinoa', 'Quinoa'),
+#        ('quinoa', 'Quinoa'),
         ('rice', 'Rice'),
         ('rye', 'Rye'),
         ('sorghum', 'Sorghum'),
         ('spelt', 'Spelt'),
-        ('teff', 'Teff'),
-        ('triticale', 'Triticale'),
+#        ('teff', 'Teff'),
+#        ('triticale', 'Triticale'),
         ('wheat', 'Wheat'),
-        ('wild rice', 'Wild rice')
+#        ('wild rice', 'Wild rice')
 )
 
 GRAIN_SUBCATEGORIES = (
 	('-','-'),
-	('a1','Amaranth: a1'),
-	('a2','Amaranth: a2'),
-	('whole', 'Barley: whole'),
-	('hulled','Barley: hulled'),
-	('hulless', 'Barley: hull-less'),
-	('bw1', 'Buckwheat: bw1'),
-	('bw2', 'Buckwheat: bw2'),
-	('b1', 'Bulghur: b1'),
-	('b2', 'Bulghur: b2'),
-	('c1', 'Corn: c1'),
-	('c2', 'Corn: c2'),
-	('e1', 'Einkorn: e1'),
-	('e2', 'Einkorn: e2'),
-        ('fa1', 'Farro: fa1'),
-        ('fa2', 'Farro: fa2'),
-        ('fo1', 'Fonio: fo1'),
-        ('fo2', 'Fonio: fo2'),
-        ('fr1', 'Freekeh: fr1'),
-        ('fr2', 'Freekeh: fr2'),
-        ('km1', 'Kamut: km1t'),
-        ('km2', 'Kamut: km2'),
-        ('kn1', 'Kaniwa: kn1'),
-        ('kn2', 'Kaniwa: kn2'),
-        ('m1', 'Millet: m1'),
-        ('m2', 'Millet: m2'),
-        ('o1', 'Oats: o1'),
-        ('o2', 'Oats: o2'),
-        ('q1', 'Quinoa: q1'),
-        ('q2', 'Quinoa: q2'),
-        ('ri1', 'Rice: ri1'),
-        ('ri2', 'Rice: ri2'),
-        ('ry1', 'Rye: ry1'),
-        ('ry2', 'Rye: ry2'),
-        ('so1', 'Sorghum: so1'),
-        ('so2', 'Sorghum: so2'),
-        ('sp1', 'Spelt: sp1'),
-        ('sp2', 'Spelt: sp2'),
-        ('te1', 'Teff: t1'),
-        ('te2', 'Teff: t2'),
-        ('tr1', 'Triticale: tr1'),
-        ('tr2', 'Triticale: tr2'),
-        ('wh1', 'Wheat: wh1'),
-        ('wh2', 'Wheat: wh2'),
-        ('wi1', 'Wild rice: wi1'),
-        ('wi2', 'Wild rice: wi2')
+	('common', 'Barley: Common'),
+	('hulless','Barley: Hulless'),
+	('dent', 'Corn: Dent'),
+	('flint', 'Corn: Flint'),
+	('flour', 'Corn: Flour'),
+	('popcorn', 'Corn: Popcorn'),
+	('sweet', 'Corn: Sweet'),
+	('summer', 'Einkorn: Summer'),
+	('winter', 'Einkorn: Winter'),
+        ('summer', 'Emmer: Summer'),
+        ('winter', 'Emmer: Winter'),
+        ('common', 'Oats: Common'),
+        ('hulless', 'Oats: Hulless'),
+        ('dryland', 'Rice: Dryland'),
+        ('paddy', 'Rice: Paddy'),
+        ('perennial', 'Rye: Perennial'),
+        ('summer', 'Rye: Summer'),
+        ('winter', 'Rye: winter'),
+        ('broom', 'Sorghum: Broom'),
+        ('grain', 'Sorghum: Grain'),
+        ('sweet', 'Sorghum: Sweet'),
+        ('summer', 'Spelt: Summer'),
+        ('winter', 'Spelt: Winter'),
+        ('spring', 'Wheat: Spring'),
+        ('winter', 'Wheat: Winter'),
+        ('facultative', 'Wheat: Facultative'),
 )
 	
 
@@ -82,9 +63,10 @@ GRAIN_SUBCATEGORIES = (
 
 
 class GrainForm(SeedNetworkBaseForm):
+	required_css_class = 'required'
 #	seed_type = forms.CharField(label="Seed Type", max_length=150, required=False, help_text="i.e. grain, vegetable, herb, perennial, fruit bush, fruit tree, etc.")
 	crop_type = forms.ChoiceField(label="Grain", choices=GRAIN_CHOICES, required=False)
-	seed_variety = forms.CharField(label="Variety Name", max_length=150, required=False, help_text="e.g. Ukrainka, PI 356457 etc.")
+	seed_variety = forms.CharField(label="Variety Name", max_length=150, required=True, help_text="e.g. Ukrainka, PI 356457 etc.")
 	seed_description = forms.CharField(label="Grain Description", widget=forms.Textarea(attrs={'rows':'2', 'cols':'60'}), required=False, help_text="Briefly highlight defining characteristics. This text will appear in the Short Description column on the Browse Seeds page. Longer descriptions available in \"More Info\". ")
 	enough_to_share = forms.BooleanField(label="Availability", required=False, help_text="Is seed available for sharing or purchase? Please indicate terms on member profile page.")
 	year = forms.CharField(label="Year", max_length=150, required=False, help_text="What year was your seed grown?")
@@ -102,9 +84,9 @@ class ExtendedGrainForm(SeedNetworkBaseForm):
 	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="What diseases, if any, affected this crop and to what extent did they affect the harvest?")
 	threshing=forms.CharField(label="Processing",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe ease or difficulty of threshing, shelling, dehulling?")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter?")
-	culinary_qualities=forms.CharField(label="Culinary Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Breads, pastry, pasta, whole grain salads, low-gluten baking, beer...")
+	culinary_qualities=forms.CharField(label="Culinary Qualities", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Breads, pastry, pasta, whole grain salads, low-gluten baking, beer...")
 	other_traits=forms.CharField(label="Uses", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Culinary?, Livestock feed?, Straw for bedding?, Broom-making?, etc")
-	external_url=forms.URLField(required=False)
+	external_url=forms.URLField(label="External URL", required=False)
 
 class SeedExportForm(SeedNetworkBaseForm):
 	archive = forms.BooleanField(required=False, help_text="Do you want to export your archived seed listings?")

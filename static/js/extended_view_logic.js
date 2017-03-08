@@ -34,7 +34,7 @@ function filter_choices(){
     var subcategoryList = document.getElementById("id_grain_subcategory");
     var grain = document.getElementById("id_crop_type").value;
 //There is a mismatch in the capitalization, so strip out the first letter
-    var rain = grain.substring(1);
+    var grain_lc = grain.toLowerCase().concat(':');
     var newList = [];
 
     while(subcategoryList.options.length) {
@@ -42,7 +42,7 @@ function filter_choices(){
     }
 
     for (i = 0; i < origOptions.length; i++) {
-        if (grain=='-'||origOptions[i].text.includes(rain)||i==0) {
+        if (grain=='-'||origOptions[i].text.toLowerCase().includes(grain_lc)||i==0) {
 	    newList.push(origOptions[i]);
         }
     }
