@@ -63,9 +63,10 @@ GRAIN_SUBCATEGORIES = (
 
 
 class GrainForm(SeedNetworkBaseForm):
+	required_css_class = 'required'
 #	seed_type = forms.CharField(label="Seed Type", max_length=150, required=False, help_text="i.e. grain, vegetable, herb, perennial, fruit bush, fruit tree, etc.")
 	crop_type = forms.ChoiceField(label="Grain", choices=GRAIN_CHOICES, required=False)
-	seed_variety = forms.CharField(label="Variety Name", max_length=150, required=False, help_text="e.g. Ukrainka, PI 356457 etc.")
+	seed_variety = forms.CharField(label="Variety Name", max_length=150, required=True, help_text="e.g. Ukrainka, PI 356457 etc.")
 	seed_description = forms.CharField(label="Grain Description", widget=forms.Textarea(attrs={'rows':'2', 'cols':'60'}), required=False, help_text="Briefly highlight defining characteristics. This text will appear in the Short Description column on the Browse Seeds page. Longer descriptions available in \"More Info\". ")
 	enough_to_share = forms.BooleanField(label="Availability", required=False, help_text="Is seed available for sharing or purchase? Please indicate terms on member profile page.")
 	year = forms.CharField(label="Year", max_length=150, required=False, help_text="What year was your seed grown?")
