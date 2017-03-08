@@ -83,9 +83,9 @@ class ExtendedGrainForm(SeedNetworkBaseForm):
 	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="What diseases, if any, affected this crop and to what extent did they affect the harvest?")
 	threshing=forms.CharField(label="Processing",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe ease or difficulty of threshing, shelling, dehulling?")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter?")
-	culinary_qualities=forms.CharField(label="Culinary Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Breads, pastry, pasta, whole grain salads, low-gluten baking, beer...")
+	culinary_qualities=forms.CharField(label="Culinary Qualities", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Breads, pastry, pasta, whole grain salads, low-gluten baking, beer...")
 	other_traits=forms.CharField(label="Uses", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Culinary?, Livestock feed?, Straw for bedding?, Broom-making?, etc")
-	external_url=forms.URLField(required=False)
+	external_url=forms.URLField(label="External URL", required=False)
 
 class SeedExportForm(SeedNetworkBaseForm):
 	archive = forms.BooleanField(required=False, help_text="Do you want to export your archived seed listings?")
