@@ -22,6 +22,7 @@
                 <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }}</td></tr>
             {% endif %}
         <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
+        <tr><td>External URL:</td><td><a href = "{{ memberinfo.external_url }}">{{memberinfo.external_url}}</a></    td></tr>
         </table>
         <br/>
                <h2>{{memberinfo.user.username}}'s Active Seeds</h2>

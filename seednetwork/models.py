@@ -47,6 +47,7 @@ class MemberInfo(models.Model):
 	usda_zone = models.CharField(max_length=3, default='-', choices=USDA_ZONE_CHOICES)
 
 	about_me = models.TextField(blank=True)
+        external_url = models.URLField(blank=True)
 	include_in_member_profiles = models.BooleanField(default=True)
 
 	def __unicode__(self):
