@@ -5,23 +5,24 @@
     {% if user.is_authenticated %}
         <table class="form">
         <tr><td><b>Grain:</b></td><td>{{seed.crop_type}}</td></tr>
-        <tr><td><b>Grain variety:</b></td><td>{{seed.seed_variety}}</td></tr>
-        <tr><td><b>Grain description:</b></td><td>{{seed.seed_description}}</td></tr>
-        <tr><td><b>enough_to_share:</b></td><td>{{seed.enough_to_share}}</td></tr>
-        <tr><td><b>year:</b></td><td>{{seed.year}}</td></tr>
-        <tr><td><b>origin:</b></td><td>{{seed.origin}}</td></tr>
-        <tr><td><b>grain_subcategory:</b></td><td>{{ev.grain_subcategory}}</td></tr>
-        <tr><td><b>breed:</b></td><td>{{ev.breed}}</td></tr>
-        <tr><td><b>plant_timing:</b></td><td>{{ev.plant_timing}}</td></tr>
-        <tr><td><b>lodging:</b></td><td>{{ev.lodging}}</td></tr>
-        <tr><td><b>lodging_percent:</b></td><td>{{ev.lodging_percent}}</td></tr>
-        <tr><td><b>disease:</b></td><td>{{ev.disease}}</td></tr>
-        <tr><td><b>days_to_maturity:</b></td><td>{{ev.days_to_maturity}}</td></tr>
-        <tr><td><b>threshing:</b></td><td>{{ev.threshing}}</td></tr>
-        <tr><td><b>cold_hardiness:</b></td><td>{{ev.cold_hardiness}}</td></tr>
-        <tr><td><b>culinary_qualities:</b></td><td>{{ ev.culinary_qualities}}</td></tr>
-        <tr><td><b>other_traits:</b></td><td>{{ ev.other_traits }}</td></tr>
-        <tr><td><b>external_url:</b></td><td><a href = "{{ ev.external_url }}">{{ev.external_url}}</a></td></tr>
+        <tr><td><b>Grain Subcategory:</b></td><td>{{seed.grain_subcategory}}</td></tr>
+        <tr><td><b>Grain Variety:</b></td><td>{{seed.seed_variety}}</td></tr>
+        <tr><td><b>Grain Description:</b></td><td>{{seed.seed_description}}</td></tr>
+        <tr><td><b>Availability:</b></td><td>{{seed.enough_to_share}}</td></tr>
+        <tr><td><b>Year:</b></td><td>{{seed.year}}</td></tr>
+        <tr><td><b>Origin:</b></td><td>{{seed.origin}}</td></tr>
+        <tr><td><b>Improvement Status:</b></td><td>{{ev.improvement_status}}</td></tr>
+        <tr><td><b>Growth Habit:</b></td><td>{{ev.growth_habit}}</td></tr>
+        <tr><td><b>Lodging:</b></td><td>{{ev.lodging}}</td></tr>
+        <tr><td><b>Cultivation:</b></td><td>{{ev.cultivation}}</td></tr>
+        <tr><td><b>Disease:</b></td><td>{{ev.disease}}</td></tr>
+        <tr><td><b>Days to Maturity:</b></td><td>{{ev.days_to_maturity}}</td></tr>
+        <tr><td><b>Threshing:</b></td><td>{{ev.threshing}}</td></tr>
+        <tr><td><b>Cold Hardiness:</b></td><td>{{ev.cold_hardiness}}</td></tr>
+        <tr><td><b>Culinary Qualities:</b></td><td>{{ ev.culinary_qualities}}</td></tr>
+        <tr><td><b>Other Uses:</b></td><td>{{ ev.other_uses }}</td></tr>
+        <tr><td><b>Additional Information:</b></td><td>{{ ev.additional_info }}</td></tr>
+        <tr><td><b>External URL:</b></td><td><a href = "{{ ev.external_url }}">{{ev.external_url}}</a></td></tr>
         <tr><td><b>Username:</b></td><td><a href="{% url 'views_user-member' mid=seed.user.memberinfo_set.get.id %}">{{ seed.user.username }}</a></td></tr>
         </table>
         <br/>

@@ -40,6 +40,7 @@ def seed_create(request):
 				user = request.user,
 				seed_type = 'grain',
 				crop_type = seed_form.cleaned_data['crop_type'],
+                                grain_subcategory = seed_form.cleaned_data['grain_subcategory'],
 				seed_variety = seed_form.cleaned_data['seed_variety'],
 				seed_description = seed_form.cleaned_data['seed_description'],
 				enough_to_share = seed_form.cleaned_data['enough_to_share'],
@@ -54,17 +55,17 @@ def seed_create(request):
                 if seed_form.is_valid() and seed.more_info and seed_form_extended.is_valid():
                         extended_seed = ExtendedView.objects.create(
                                 parent_seed = seed,
-                                grain_subcategory = seed_form_extended.cleaned_data['grain_subcategory'],
-                                breed = seed_form_extended.cleaned_data['breed'],
-                                plant_timing = seed_form_extended.cleaned_data['plant_timing'],
+                                improvement_status = seed_form_extended.cleaned_data['improvement_status'],
+                                growth_habit = seed_form_extended.cleaned_data['growth_habit'],
                                 lodging = seed_form_extended.cleaned_data['lodging'],
-                                lodging_percent = seed_form_extended.cleaned_data['lodging_percent'],
+                                cultivation = seed_form_extended.cleaned_data['cultivation'],
                                 disease = seed_form_extended.cleaned_data['disease'],
                                 days_to_maturity = seed_form_extended.cleaned_data['days_to_maturity'],
                                 threshing = seed_form_extended.cleaned_data['threshing'],
                                 cold_hardiness = seed_form_extended.cleaned_data['cold_hardiness'],
                                 culinary_qualities = seed_form_extended.cleaned_data['culinary_qualities'],
-                                other_traits = seed_form_extended.cleaned_data['other_traits'],
+                                other_uses = seed_form_extended.cleaned_data['other_uses'],
+                                additional_info = seed_form_extended.cleaned_data['additional_info'],
                                 external_url = seed_form_extended.cleaned_data['external_url']
                         )
 
@@ -101,6 +102,7 @@ def seeds(request):
 def fill_seed_from_form(seed, form):
 #	seed.seed_type = form.cleaned_data['seed_type']
 	seed.crop_type = form.cleaned_data['crop_type']
+        seed.grain_subcategory = form.cleaned_data['grain_subcategory']
 	seed.seed_variety = form.cleaned_data['seed_variety']
 	seed.seed_description = form.cleaned_data['seed_description']
 	seed.enough_to_share = form.cleaned_data['enough_to_share']
@@ -109,17 +111,17 @@ def fill_seed_from_form(seed, form):
         seed.more_info = form.cleaned_data['more_info']
 
 def fill_ev_from_evform(extended_view, evform):
-        extended_view.grain_subcategory = evform.cleaned_data['grain_subcategory']
-        extended_view.breed = evform.cleaned_data['breed']
-        extended_view.plant_timing = evform.cleaned_data['plant_timing']
+        extended_view.improvement_status = evform.cleaned_data['improvement_status']
+        extended_view.growth_habit = evform.cleaned_data['growth_habit']
         extended_view.lodging = evform.cleaned_data['lodging']
-        extended_view.lodging_percent = evform.cleaned_data['lodging_percent']
+        extended_view.cultivation = evform.cleaned_data['cultivation']
         extended_view.disease = evform.cleaned_data['disease']
         extended_view.days_to_maturity = evform.cleaned_data['days_to_maturity']
         extended_view.threshing = evform.cleaned_data['threshing']
         extended_view.cold_hardiness = evform.cleaned_data['cold_hardiness']
         extended_view.culinary_qualities = evform.cleaned_data['culinary_qualities']
-        extended_view.other_traits = evform.cleaned_data['other_traits']
+        extended_view.other_uses = evform.cleaned_data['other_uses']
+        extended_view.additional_info = evform.cleaned_data['additional_info']
         extended_view.external_url = evform.cleaned_data['external_url']
 
 
@@ -210,6 +212,7 @@ def seed_edit(request, id):
 		data = {}
 		data['seed_type'] = seed.seed_type
 		data['crop_type'] = seed.crop_type
+                data['grain_subcategory'] = seed.grain_subcategory
 		data['seed_variety'] = seed.seed_variety
 		data['seed_description'] = seed.seed_description
 		data['enough_to_share'] = seed.enough_to_share
@@ -217,17 +220,17 @@ def seed_edit(request, id):
 		data['origin'] = seed.origin
                 data['more_info'] = seed.more_info
                 if seed.more_info:
-                       data['grain_subcategory'] = extended_view.grain_subcategory
-                       data['breed']=extended_view.breed
-                       data['plant_timing']=extended_view.plant_timing
+                       data['improvement_status']=extended_view.improvement_status
+                       data['growth_habit']=extended_view.growth_habit
                        data['lodging']=extended_view.lodging
-                       data['lodging_percent']=extended_view.lodging_percent
+                       data['cultivation']=extended_view.cultivation
                        data['disease']=extended_view.disease
                        data['days_to_maturity']=extended_view.days_to_maturity
                        data['threshing']=extended_view.threshing
                        data['cold_hardiness']=extended_view.cold_hardiness
                        data['culinary_qualities']=extended_view.culinary_qualities
-                       data['other_traits']=extended_view.other_traits
+                       data['other_uses']=extended_view.other_uses
+                       data['additional_info']=extended_view.additional_info
                        data['external_url']=extended_view.external_url
 		e_ids = []
 		for e in seed.event_set.all():
