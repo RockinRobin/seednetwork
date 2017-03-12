@@ -37,21 +37,21 @@ GRAIN_SUBCATEGORIES = (
 	('flour', 'Corn: Flour'),
 	('popcorn', 'Corn: Popcorn'),
 	('sweet', 'Corn: Sweet'),
-	('summer', 'Einkorn: Summer'),
+	('summer', 'Einkorn: Spring'),
 	('winter', 'Einkorn: Winter'),
-        ('summer', 'Emmer: Summer'),
+        ('summer', 'Emmer: Spring'),
         ('winter', 'Emmer: Winter'),
         ('common', 'Oats: Common'),
         ('hulless', 'Oats: Hulless'),
         ('dryland', 'Rice: Dryland'),
         ('paddy', 'Rice: Paddy'),
         ('perennial', 'Rye: Perennial'),
-        ('summer', 'Rye: Summer'),
-        ('winter', 'Rye: winter'),
+        ('summer', 'Rye: Spring'),
+        ('winter', 'Rye: Winter'),
         ('broom', 'Sorghum: Broom'),
         ('grain', 'Sorghum: Grain'),
         ('sweet', 'Sorghum: Sweet'),
-        ('summer', 'Spelt: Summer'),
+        ('summer', 'Spelt: Spring'),
         ('winter', 'Spelt: Winter'),
         ('spring', 'Wheat: Spring'),
         ('winter', 'Wheat: Winter'),
@@ -82,8 +82,8 @@ class ExtendedGrainForm(SeedNetworkBaseForm):
         lodging=forms.ChoiceField(choices=(('-','-'),(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9')), required=False, help_text="1 = no lodging, 9 = all plants flat.")
 	cultivation=forms.CharField(label="Cultivation",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Bed preparation, spacing, interplanting, fertility needs, pest protection, grown organically?")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter? For example, \'A freak mid-June frost did not seem to slow down growth at all in USDA zone 5a.\'")
-	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="What diseases, if any, affected this crop and to what extent did they affect the harvest?")
-	threshing=forms.CharField(label="Threshing",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe ease or difficulty of threshing, shelling, dehulling?")
+	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="Describe disease resistance or susceptiblity of variety.")
+	threshing=forms.CharField(label="Threshing",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe ease or difficulty of threshing, shelling, dehulling.")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter? For example, \'A freak mid-June frost did not seem to slow down growth at all in USDA zone 5a.\'")
 	culinary_qualities=forms.CharField(label="Culinary Qualities", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Baking, cooking, or brewing qualities and uses.")
 	other_uses=forms.CharField(label="Other Uses", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Livestock feed, bedding, broom-making, straw weaving, thatching,  etc.")
