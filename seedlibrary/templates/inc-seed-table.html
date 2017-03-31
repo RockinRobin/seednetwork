@@ -46,6 +46,7 @@
                     <a href="{% url 'views-seed_edit' id=seed.id %}">Edit</a>
                     {% if seed.archived %}
                         | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Unarchive</a>
+		        | <a href="{% url 'views-seed_confirm_delete' id=seed.id %}">Delete</a>
                     {% else %}
                         | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Archive</a>
                     {% endif %}
