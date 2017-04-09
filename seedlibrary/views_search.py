@@ -11,11 +11,11 @@ def seed_search(request):
 	seed_list = []
 	archived_checked = ""
         if request.method=='GET':
-                seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
+                seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'grain_subcategory', 'seed_variety')
                 seed_list = seed_list.filter(archived=False)
 	elif request.method=='POST':
 		query = request.POST['q']
-		seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
+		seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'grain_subcategory', 'seed_variety')
 
 		# deal with archive checkbox. Keep it checked if checked.
 		# if not, filter out archived items

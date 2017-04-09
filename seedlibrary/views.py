@@ -92,7 +92,7 @@ def seed_create_confirm(request):
         
 @login_required
 def seeds(request):  
-	seed_list = Seed.objects.filter(user=request.user, archived=False)
+	seed_list = Seed.objects.filter(user=request.user, archived=False).order_by('crop_type', 'grain_subcategory', 'seed_variety')
 	seed_archive_list = Seed.objects.filter(user=request.user, archived=True)
 
 	return render_to_response('seeds.html',
