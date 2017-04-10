@@ -1,6 +1,7 @@
 <table class="results">
     <tr>
         <th>Grain</th>
+        <th>Subcategory</th>
         <th>Variety Name</th>
         <th>Year</th>
         <th>Source</th>
@@ -14,6 +15,7 @@
     {% for seed in seed_list_for_table %}
         <tr>
             <td>{{ seed.crop_type }}</td>
+            <td>{{ seed.grain_subcategory }}</td>
             <td>
                 {% if seed.more_info %}
                         <a href="{% url 'views-seed_profile' id=seed.id %}">{{ seed.seed_variety }}</a>
@@ -46,6 +48,7 @@
                     <a href="{% url 'views-seed_edit' id=seed.id %}">Edit</a>
                     {% if seed.archived %}
                         | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Unarchive</a>
+		        | <a href="{% url 'views-seed_confirm_delete' id=seed.id %}">Delete</a>
                     {% else %}
                         | <a href="{% url 'views-seed_confirm_archive' id=seed.id %}">Archive</a>
                     {% endif %}

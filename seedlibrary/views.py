@@ -92,7 +92,7 @@ def seed_create_confirm(request):
         
 @login_required
 def seeds(request):  
-	seed_list = Seed.objects.filter(user=request.user, archived=False)
+	seed_list = Seed.objects.filter(user=request.user, archived=False).order_by('crop_type', 'grain_subcategory', 'seed_variety')
 	seed_archive_list = Seed.objects.filter(user=request.user, archived=True)
 
 	return render_to_response('seeds.html',
@@ -263,6 +263,21 @@ def seed_confirm_archive(request, id):
 			{ "seed":seed, "error": error },
 			context_instance=RequestContext(request))
 
+login_required
+def seed_confirm_delete(request, id):
+        seed = get_object_or_404(Seed, pk=id, user=request.user)
+        error = None
+
+        if request.method == 'POST':
+                if request.POST['command'] == 'delete':
+                        instance = Seed.objects.get(id=id)
+                        instance.delete()
+
+                return redirect('views-seeds')
+
+        return render_to_response('seed-confirm-delete.html',
+                        { "seed":seed, "error": error },
+                        context_instance=RequestContext(request))
 
 @login_required
 def seed_profile(request, id):

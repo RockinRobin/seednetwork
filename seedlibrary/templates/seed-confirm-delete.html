@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Seed Bank: Confirm {% if seed.archived %}archived{% else %} unarchived {% endif %} delete {% endblock %}
+{% block pagetitle %}Delete this {% if seed.archived %}archived{% else %}unarchived{% endif %} seed?{% endblock %}
+{% block content %}
+    <p><form method="post" action="{% url 'views-seed_confirm_delete' id=seed.id %}">
+        {% csrf_token %}
+        Are you sure you want to delete this {% if seed.archived %} archived {% else %} unarchived {% endif %} seed?
+    </p>
+    <table class="form">
+        <tr><th>Crop:</th><td>{{ seed.crop_type }}</td></tr>
+        <tr><th>Variety:</th><td>{{ seed.seed_variety }}</td></tr>
+    </table>
+    <p><br/><a href="{% url 'views-seeds' %}">Cancel</a> |
+       <input type="hidden" name="command" value="delete">
+       <input type="submit" value="Delete" />
+    </p>
+    </form>
+{%endblock%}

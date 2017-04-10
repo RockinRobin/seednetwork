@@ -10,6 +10,7 @@ urlpatterns = [
 	url(r'^seeds/export/$', views.seed_export, name='views-seed_export'),
 	url(r'^seeds/edit/(?P<id>[0-9]+)$', views.seed_edit, name='views-seed_edit'),
 	url(r'^seeds/confirm-archive/(?P<id>[0-9]+)$', views.seed_confirm_archive, name='views-seed_confirm_archive'),
+	url(r'^seeds/confirm-delete/(?P<id>[0-9]+)$', views.seed_confirm_delete, name='views-seed_confirm_delete'),
 	url(r'^seeds/seed-profile/(?P<id>[0-9]+)$', views.seed_profile, name='views-seed_profile'),
 	url(r'^search/$', views_search.seed_search, name='views_search-seed_search'),
 	url(r'^events/$', views.events, name='views-events'),
