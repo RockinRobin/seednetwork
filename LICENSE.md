@@ -1,6 +1,7 @@
 ### The MIT License
 
-Copyright (c) 2013 Rosemary Wessel, Beryl Hoffman, Lou Franco
+Copyright (c) of the original work  2013 Rosemary Wessel, Beryl Hoffman, Lou Franco
+Copyright (c) of the modified work 2016 - 2017 Gridmatter LLC
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
