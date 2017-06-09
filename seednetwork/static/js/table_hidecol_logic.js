@@ -1,4 +1,4 @@
-if (document.URL.indexOf("search")>=0) {
+if (document.URL.indexOf("search")>=0 || document.URL.indexOf("member")>=0) {
     hide_table_actions();
 }
 

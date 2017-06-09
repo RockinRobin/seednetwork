@@ -1,6 +1,6 @@
 seednetwork
 ===========
-The distributed seed library for the Hilltown Seed Saving Network
+The Seed Exchange of the Heritage and Landrace Grain Network.
 
 This is a Django site. To make it easier to deploy without changing settings.py, use the following environment variables
 
@@ -27,15 +27,13 @@ export DATABASE_URL='mysql://user:pwd@host:port/database'
 
 Heroku Deploy Instructions
 --------------------------
-Check the wiki for the most up-to-date instructions
+There is some helpful information at the original wiki
 
 https://github.com/hackforwesternmass/seednetwork/wiki/Hosting-on-Heroku
 
-About the Hilltown Seed Saving Network 
+History of the seedbank 
 --------------------------------------
-The Hilltown Seed Saving Network of western Massachusetts is a loosely organized group working to educate 
-ourselves and our neighbors about seed saving and currently creating a virtual local seed bank, sharing 
-information about what seeds we have in our own collections and how best to grow them. 
 
-We are from Cummington, Chesterfield, Plainfield, Worthington, Windsor, Goshen, Ashfield and 
-surrounding towns in the region and meet monthly in Cummington. All are welcome!
+This exchange is derived from the Hilltown Seed Saving Network which was created during a hack for Western Massachusetts hackathon. We are grateful for their hard work.
+
+Currently this site is optimized for grains, check out our fork for seeds. In the future we hope to unify the models.
