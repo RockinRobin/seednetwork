@@ -40,9 +40,9 @@ urlpatterns = [
 
     url(r'^accounts/reset-password/done/$', auth.views.password_reset_done,
                 {'template_name':'password_reset_done.html'},
-                name='auth-views-password_reset_done'),
+                name='password_reset_done'),  #django hardcoded this name
 
-    url(r'^accounts/reset-password-confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+    url(r'^accounts/reset-password-confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
 	 auth.views.password_reset_confirm, {'template_name':'password_reset_confirm.html'}, name='auth-views-password_reset_confirm'),
 
     url(r'^accounts/reset-password-complete/$', auth.views.password_reset_complete,
