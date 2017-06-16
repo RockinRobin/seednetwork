@@ -43,16 +43,16 @@ urlpatterns = [
                 name='password_reset_done'),  #django hardcoded this name
 
     url(r'^accounts/reset-password-confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
-	 auth.views.password_reset_confirm, {'template_name':'password_reset_confirm.html'}, name='auth-views-password_reset_confirm'),
+	 auth.views.password_reset_confirm, {'template_name':'password_reset_confirm.html'}, name='password_reset_confirm'),
 
     url(r'^accounts/reset-password-complete/$', auth.views.password_reset_complete,
-		{'template_name':'password_reset_complete.html'}, name='auth-views-password_reset_complete'),
+		{'template_name':'password_reset_complete.html'}, name='password_reset_complete'),
 
     url(r'^accounts/change-password/$', auth.views.password_change,
-		 {'template_name':'password_change.html', 'password_change_form':SeedNetworkPasswordChangeForm}, name='auth-views-password_change'),
+		 {'template_name':'password_change.html', 'password_change_form':SeedNetworkPasswordChangeForm}, name='password_change'),
 
     url(r'^accounts/change-password/done/$', auth.views.password_change_done,
-		 {'template_name':'password_change_done.html'}, name='auth-views-password_change_done'),
+		 {'template_name':'password_change_done.html'}, name='password_change_done'),
 ]
 
 if not settings.DEBUG:
