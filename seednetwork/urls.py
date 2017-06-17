@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth.views.logout, {'template_name':'logout.html', 'next_page':'/'}, name='auth-views-logout'),
     url(r'^accounts/profile/$', views_user.profile, name='views_user-profile'),
     url(r'^accounts/member/(?P<mid>[0-9]+)$', views_user.member, name='views_user-member'),
-    url(r'^accounts/members/$', views_user.members, name='views_user-members'),
+    url(r'^accounts/directory/$', views_user.members, name='views_user-members'),
 
     url(r'^accounts/profile-edit/$', views_user.edit_profile, name='views_user-edit_profile'),
 
