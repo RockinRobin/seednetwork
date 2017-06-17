@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth.views.logout, {'template_name':'logout.html', 'next_page':'/'}, name='auth-views-logout'),
     url(r'^accounts/profile/$', views_user.profile, name='views_user-profile'),
     url(r'^accounts/member/(?P<mid>[0-9]+)$', views_user.member, name='views_user-member'),
-    url(r'^accounts/members/$', views_user.members, name='views_user-members'),
+    url(r'^accounts/directory/$', views_user.members, name='views_user-members'),
 
     url(r'^accounts/profile-edit/$', views_user.edit_profile, name='views_user-edit_profile'),
 
@@ -36,23 +36,23 @@ urlpatterns = [
 
     url(r'^accounts/reset-password/$', auth.views.password_reset,
 		 {'template_name':'password_reset.html',
-		  'email_template_name':'password_reset_email.html'}, name='auth-views-password_reset'),
+		  'email_template_name':'password_reset_email.html'}, name='password_reset'),
 
     url(r'^accounts/reset-password/done/$', auth.views.password_reset_done,
                 {'template_name':'password_reset_done.html'},
-                name='auth-views-password_reset_done'),
+                name='password_reset_done'),  #django hardcoded this name
 
-    url(r'^accounts/reset-password-confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
-	 auth.views.password_reset_confirm, {'template_name':'password_reset_confirm.html'}, name='auth-views-password_reset_confirm'),
+    url(r'^accounts/reset-password-confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
+	 auth.views.password_reset_confirm, {'template_name':'password_reset_confirm.html'}, name='password_reset_confirm'),
 
     url(r'^accounts/reset-password-complete/$', auth.views.password_reset_complete,
-		{'template_name':'password_reset_complete.html'}, name='auth-views-password_reset_complete'),
+		{'template_name':'password_reset_complete.html'}, name='password_reset_complete'),
 
     url(r'^accounts/change-password/$', auth.views.password_change,
-		 {'template_name':'password_change.html', 'password_change_form':SeedNetworkPasswordChangeForm}, name='auth-views-password_change'),
+		 {'template_name':'password_change.html', 'password_change_form':SeedNetworkPasswordChangeForm}, name='password_change'),
 
     url(r'^accounts/change-password/done/$', auth.views.password_change_done,
-		 {'template_name':'password_change_done.html'}, name='auth-views-password_change_done'),
+		 {'template_name':'password_change_done.html'}, name='password_change_done'),
 ]
 
 if not settings.DEBUG:
