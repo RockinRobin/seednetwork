@@ -1,36 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Heritage and Landrace Grain Network Virtual Seed Bank{% endblock %}
-{% block pagetitle %}Welcome to the Virtual Seed Bank of the  Heritage and Landrace Grain Network{% endblock %}
+{% block pagetitle %}
+    {% if user.is_authenticated %}
+         Welcome to the Start Page of the Heritage and Landrace Grain Network
+    {% else %}
+         Welcome to the Heritage and Landrace Grain Network
+    {% endif %}
+{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
 <p>
-        Welcome! Please list your seeds, contact each other, and share your grains and experiences.
+        List your seeds, contact each other, and share your grains, knowledge, and experience.
+        Use your profile page to tell others about yourself and your work, describe the varieties you grow and the scope of your projects, and initiate collaboration on trials.
+        Connect toe the work of others through their member profiles.
 <br /> <br>
-Please use your profile page to tell others about yourself and your work, describe the varieties you grow and the scope of your projects, and initiate collaboration on trials. 
+        Use the tabs above to add a new seed, browse seed listings, and view member profiles.
+<br /> <br>
+        Use the search bar below to search for specific grain varieties or member names.
 </p>
-<p>
-<h3><a href="{% url 'views-seed_create' %}">Add a new seed</a> or 
-         <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">Browse all seeds</a> or 
-		 Search for seeds, towns, or members below:
         <p><form id="search" class="searchform" method="post" action="{% url 'views_search-seed_search' %}">{% csrf_token %}
             <input id="q" type="text" name="q"> <input type="submit" value="Search">
         </form></p>
     {% else %}
 	<p>
-	Around the country farmers and gardeners are rediscovering the importance and pleasure of growing heritage and landrace grains. Their flavor, high nutrient content, adaptability to a range of conditions, beauty, and interesting histories compel us to become involved in a time of climate change and alarming loss of diversity.
+	Around the country farmers and gardeners are rediscovering the importance and pleasure of growing heritage and landrace grains. Their flavor, high nutrient content, adaptability to a range of conditions, beauty, and interesting histories compel us to become involved with growing and re-introducing them in a time of climate change and alarming loss of diversity.
 	<br /><br />
-	This site offers the opportunity for members to share seeds, knowledge, and experience and to network with other growers. We hope eventually to identify outstanding varieties that can be shared with other farmers, grown out in larger quantity, and tested for baking qualities and other uses. 
+	This site offers the opportunity for members to share seeds, knowledge, and experience and to network with other growers. We hope eventually to identify outstanding varieties that can be shared with other farmers, grown out in larger quantity, and tested for baking qualities and other uses. We invite you to join in this effort.
 	</p>
 	<p>
 	Who are we? <br />
 	Sylvia and Ruth are both Vermont gardeners with seed saving backgrounds who have been increasingly drawn to ancient grains over the last few years.
 	We created this website to facilitate connections among those who are growing and using grains, on whatever scale, and with the hope that it will encourage more widespread cultivation and use.
-	We are especially grateful to Eli Rogosa for her pioneering work in reviving interest in heritage grains.
+	We are especially grateful to Eli Rogosa and other pioneers in working to revive interest in heritage grains.
 	</p>
-       <p>
-       Register and log in to begin listing seeds and browsing the offerings of other members. 
-       </p>
-	<h2>  Login or Register to use the Virtual Seed Bank. </h2>
+	<h2>  Log in or register to participate in the Grain Network </h2>
         <table>
         <tr>
         <td width="298" height="714" valign="top">
