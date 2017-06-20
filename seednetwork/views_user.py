@@ -139,10 +139,11 @@ def member(request, mid):
 	memberinfo = get_object_or_404(MemberInfo, pk=mid)
         uid = memberinfo.user.id #The mid and uid have gotten out of sync in test db.
 	#TODO change all mid references to uid references. Be consistent.
-        seed_list = Seed.objects.filter(user=uid, archived=False)
+        seed_list = Seed.objects.filter(user=uid, archived=False).order_by('seed_type','crop_type', 'grain_subcategory','seed_variety')
 	return render_to_response('member.html',
 			{ "memberinfo":memberinfo, "seed_list": seed_list },
 			                  context_instance=RequestContext(request))
+
 
 
 @login_required
