@@ -65,15 +65,15 @@ GRAIN_SUBCATEGORIES = (
 class GrainForm(SeedNetworkBaseForm):
 	required_css_class = 'required'
 #	seed_type = forms.CharField(label="Seed Type", max_length=150, required=False, help_text="i.e. grain, vegetable, herb, perennial, fruit bush, fruit tree, etc.")
-	crop_type = forms.ChoiceField(label="Grain", choices=GRAIN_CHOICES, required=False)
-	grain_subcategory=forms.ChoiceField(label="Grain Subcategory", choices=GRAIN_SUBCATEGORIES,required=False)
+	crop_type = forms.ChoiceField(label="Grain", choices=GRAIN_CHOICES, required=True)
+	grain_subcategory=forms.ChoiceField(label="Grain Subcategory", choices=GRAIN_SUBCATEGORIES,required=True)
 	seed_variety = forms.CharField(label="Variety Name", max_length=150, required=True, help_text="e.g. Ukrainka, PI 356457 etc.")
 	seed_description = forms.CharField(label="Short Description", widget=forms.Textarea(attrs={'rows':'2', 'cols':'60'}), required=False, help_text="Briefly highlight defining characteristics. This text will appear in the Short Description column on the Browse Seeds page. Longer descriptions available in \'More Information\'. ")
 	enough_to_share = forms.BooleanField(label="Availability", required=False, help_text="Is your seed available for sharing or purchase? Please indicate terms on member profile page.")
 	year = forms.CharField(label="Year", max_length=150, required=False, help_text="What year was your seed grown?")
 	origin = forms.CharField(label="Source", max_length=150, required=False, help_text="The year and from whom you first obtained the seed.")
 #	events = forms.ModelMultipleChoiceField(Event.objects.filter(show_on_seed_edit=True), required=False, widget=forms.CheckboxSelectMultiple, help_text="What events will you bring the seed to?")
-	more_info = forms.BooleanField(label="More Information", required=False, help_text="Check the box to provide more detailed information that wll be available on the seed's profile page.")
+	more_info = forms.BooleanField(label="More Information", required=False, help_text="Check the box to provide more detailed information that will be available on the seed's profile page.")
 
 class ExtendedGrainForm(SeedNetworkBaseForm):
 	improvement_status =forms.ChoiceField(label="Improvement Status", choices=(('-','-'),('landrace','Landrace'),('cultivar','Cultivar')),required=False)
@@ -88,7 +88,7 @@ class ExtendedGrainForm(SeedNetworkBaseForm):
 	culinary_qualities=forms.CharField(label="Culinary Qualities", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Baking, cooking, or brewing qualities and uses.")
 	other_uses=forms.CharField(label="Other Uses", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Livestock feed, bedding, broom-making, straw weaving, thatching,  etc.")
 	additional_info=forms.CharField(label="Additional Information", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Interesting history, cultural information, etc.")
-	external_url=forms.URLField(label="External URL", required=False)
+	external_url=forms.URLField(label="External URL", required=False, help_text="Include a link to a website with related information, or to your own website.")
 
 class SeedExportForm(SeedNetworkBaseForm):
 	archive = forms.BooleanField(required=False, help_text="Do you want to export your archived seed listings?")
