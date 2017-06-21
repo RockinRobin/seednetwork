@@ -71,7 +71,7 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	mailing_address = forms.CharField(label = "Mailing Address", widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="(Optional for US addresses)")
 	mailing_address_is_public = forms.BooleanField(label = "Mailing address is visible to members", required=False, initial=True)
 
-	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and parment information.")
+	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and payment information.")
 	external_url=forms.URLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.")
 	include_in_member_profiles = forms.BooleanField(label="Include in member index", required=False, initial=True)
 
