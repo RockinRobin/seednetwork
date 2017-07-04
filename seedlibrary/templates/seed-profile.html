@@ -4,15 +4,15 @@
 {% block content %}
     {% if user.is_authenticated %}
         <table class="form">
-        <tr><td><b>Grain:</b></td><td>{{seed.crop_type}}</td></tr>
-        <tr><td><b>Grain Subcategory:</b></td><td>{{seed.grain_subcategory}}</td></tr>
-        <tr><td><b>Grain Variety:</b></td><td>{{seed.seed_variety}}</td></tr>
+        <tr><td><b>Grain:</b></td><td>{{seed.crop_type|capfirst}}</td></tr>
+        <tr><td><b>Grain Subcategory:</b></td><td>{{seed.grain_subcategory|capfirst}}</td></tr>
+        <tr><td><b>Grain Variety:</b></td><td>{{seed.seed_variety|capfirst}}</td></tr>
         <tr><td><b>Grain Description:</b></td><td>{{seed.seed_description}}</td></tr>
-        <tr><td><b>Availability:</b></td><td>{{seed.enough_to_share}}</td></tr>
+        <tr><td><b>Availability:</b></td><td>{{seed.enough_to_share|yesno:"Yes,No" }}</td></tr>
         <tr><td><b>Year:</b></td><td>{{seed.year}}</td></tr>
         <tr><td><b>Origin:</b></td><td>{{seed.origin}}</td></tr>
-        <tr><td><b>Improvement Status:</b></td><td>{{ev.improvement_status}}</td></tr>
-        <tr><td><b>Growth Habit:</b></td><td>{{ev.growth_habit}}</td></tr>
+        <tr><td><b>Improvement Status:</b></td><td>{{ev.improvement_status|capfirst}}</td></tr>
+        <tr><td><b>Growth Habit:</b></td><td>{{ev.growth_habit|capfirst}}</td></tr>
         <tr><td><b>Lodging:</b></td><td>{{ev.lodging}}</td></tr>
         <tr><td><b>Cultivation:</b></td><td>{{ev.cultivation}}</td></tr>
         <tr><td><b>Disease:</b></td><td>{{ev.disease}}</td></tr>

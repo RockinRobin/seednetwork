@@ -14,13 +14,13 @@
         <th>Actions</th></tr>
     {% for seed in seed_list_for_table %}
         <tr>
-            <td>{{ seed.crop_type }}</td>
-            <td>{{ seed.grain_subcategory }}</td>
+            <td>{{ seed.crop_type|capfirst }}</td>
+            <td>{{ seed.grain_subcategory|capfirst }}</td>
             <td>
                 {% if seed.more_info %}
                         <a href="{% url 'views-seed_profile' id=seed.id %}">{{ seed.seed_variety }}</a>
                 {% else %}
-                        {{ seed.seed_variety }}
+                        {{ seed.seed_variety|capfirst }}
                 {% endif %}
             </td>
             <td>{{ seed.year }}</td>
