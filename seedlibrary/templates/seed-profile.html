@@ -6,17 +6,17 @@
         <table class="form">
         <tr><td><b>Grain:</b></td><td>{{seed.crop_type|capfirst}}</td></tr>
         <tr><td><b>Grain Subcategory:</b></td><td>{{seed.grain_subcategory|capfirst}}</td></tr>
-        <tr><td><b>Grain Variety:</b></td><td>{{seed.seed_variety|capfirst}}</td></tr>
-        <tr><td><b>Grain Description:</b></td><td>{{seed.seed_description}}</td></tr>
+        <tr><td><b>Variety Name:</b></td><td>{{seed.seed_variety|capfirst}}</td></tr>
+        <tr><td><b>Short Description:</b></td><td>{{seed.seed_description}}</td></tr>
         <tr><td><b>Availability:</b></td><td>{{seed.enough_to_share|yesno:"Yes,No" }}</td></tr>
         <tr><td><b>Year:</b></td><td>{{seed.year}}</td></tr>
-        <tr><td><b>Origin:</b></td><td>{{seed.origin}}</td></tr>
+        <tr><td><b>Source:</b></td><td>{{seed.origin}}</td></tr>
         <tr><td><b>Improvement Status:</b></td><td>{{ev.improvement_status|capfirst}}</td></tr>
         <tr><td><b>Growth Habit:</b></td><td>{{ev.growth_habit|capfirst}}</td></tr>
+        <tr><td><b>Days to Maturity:</b></td><td>{{ev.days_to_maturity}}</td></tr>
         <tr><td><b>Lodging:</b></td><td>{{ev.lodging}}</td></tr>
         <tr><td><b>Cultivation:</b></td><td>{{ev.cultivation}}</td></tr>
         <tr><td><b>Disease:</b></td><td>{{ev.disease}}</td></tr>
-        <tr><td><b>Days to Maturity:</b></td><td>{{ev.days_to_maturity}}</td></tr>
         <tr><td><b>Threshing:</b></td><td>{{ev.threshing}}</td></tr>
         <tr><td><b>Cold Hardiness:</b></td><td>{{ev.cold_hardiness}}</td></tr>
         <tr><td><b>Culinary Qualities:</b></td><td>{{ ev.culinary_qualities}}</td></tr>
