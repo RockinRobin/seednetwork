@@ -146,7 +146,6 @@ def seed_export(request):
 
 def seeds_as_csv_to_response(seed_list):
 	response = HttpResponse(content_type='text/csv')
-	response['Content-Disposition'] = 'attachment; filename="Seeds.csv"'
 	writer = csv.writer(response)
 	# Write header row.
 	writer.writerow([
@@ -282,9 +281,13 @@ def seed_confirm_delete(request, id):
 @login_required
 def seed_profile(request, id):
 	seed = get_object_or_404(Seed, pk=id)
-        ev = seed.extendedview_set.get()
+        try:
+                extended_view = seed.extendedview_set.get()
+        except:
+                extended_view = ExtendedView(parent_seed = seed)
+                extended_view.save()
         return render_to_response('seed-profile.html',
-                        {"seed":seed, "ev": ev},
+                        {"seed":seed, "ev": extended_view},
                         context_instance=RequestContext(request))
 
 
@@ -300,7 +303,7 @@ def seed_profile(request, id):
 def events(request):
 	yesterday = datetime.now() - timedelta(days=1)
 	event_list = Event.objects.filter(date__gte=yesterday).order_by('date')
-	past_event_list = Event.objects.filter(date__lt=yesterday).order_by('-date')
+	past_event_list = Event.objects.filte(date__lt=yesterday).order_by('-date')
 
 	return render_to_response('events.html',
 			{ "event_list": event_list, "past_event_list":past_event_list},
