@@ -30,6 +30,8 @@ GRAIN_CHOICES = (
 
 GRAIN_SUBCATEGORIES = (
 	('-','-'),
+        ('grain', 'Amaranth: Grain'),
+        ('leaf', 'Amaranth: Leaf'),
 	('common', 'Barley: Common'),
 	('hulless','Barley: Hulless'),
 	('dent', 'Corn: Dent'),
@@ -37,21 +39,21 @@ GRAIN_SUBCATEGORIES = (
 	('flour', 'Corn: Flour'),
 	('popcorn', 'Corn: Popcorn'),
 	('sweet', 'Corn: Sweet'),
-	('summer', 'Einkorn: Spring'),
+	('spring', 'Einkorn: Spring'),
 	('winter', 'Einkorn: Winter'),
-        ('summer', 'Emmer: Spring'),
+        ('spring', 'Emmer: Spring'),
         ('winter', 'Emmer: Winter'),
         ('common', 'Oats: Common'),
         ('hulless', 'Oats: Hulless'),
         ('dryland', 'Rice: Dryland'),
         ('paddy', 'Rice: Paddy'),
         ('perennial', 'Rye: Perennial'),
-        ('summer', 'Rye: Spring'),
+        ('spring', 'Rye: Spring'),
         ('winter', 'Rye: Winter'),
         ('broom', 'Sorghum: Broom'),
         ('grain', 'Sorghum: Grain'),
         ('sweet', 'Sorghum: Sweet'),
-        ('summer', 'Spelt: Spring'),
+        ('spring', 'Spelt: Spring'),
         ('winter', 'Spelt: Winter'),
         ('spring', 'Wheat: Spring'),
         ('winter', 'Wheat: Winter'),
@@ -76,13 +78,13 @@ class GrainForm(SeedNetworkBaseForm):
 	more_info = forms.BooleanField(label="More Information", required=False, help_text="Check the box to provide more detailed information that will be available on the seed's profile page.")
 
 class ExtendedGrainForm(SeedNetworkBaseForm):
-	improvement_status =forms.ChoiceField(label="Improvement Status", choices=(('-','-'),('landrace','Landrace'),('cultivar','Cultivar')),required=False)
+	improvement_status =forms.ChoiceField(label="Improvement Status", choices=(('-','-'),('landrace','Landrace'),('cultivar','Cultivar'),('unknown','Unknown')),required=False)
 	growth_habit=forms.ChoiceField(label="Growth Habit", choices=(('-','-'),('spring','Spring'),('winter','Winter'),('facultative','Facultative'), ('perennial','Perennial')),required=False)
         days_to_maturity=forms.IntegerField(label="Days to Maturity", required=False)
         lodging=forms.ChoiceField(choices=(('-','-'),(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9')), required=False, help_text="1 = no lodging, 9 = all plants flat.")
 	cultivation=forms.CharField(label="Cultivation",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Bed preparation, spacing, interplanting, fertility needs, pest protection, grown organically?")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter? For example, \'A freak mid-June frost did not seem to slow down growth at all in USDA zone 5a.\'")
-	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="Describe disease resistance or susceptiblity of variety.")
+	disease=forms.CharField(label="Disease",widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="Describe disease resistance or susceptibility of variety.")
 	threshing=forms.CharField(label="Threshing",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe ease or difficulty of threshing, shelling, dehulling.")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter? For example, \'A freak mid-June frost did not seem to slow down growth at all in USDA zone 5a.\'")
 	culinary_qualities=forms.CharField(label="Culinary Qualities", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Baking, cooking, or brewing qualities and uses.")
