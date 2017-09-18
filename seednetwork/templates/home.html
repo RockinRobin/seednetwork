@@ -33,32 +33,33 @@
 	We created this website to facilitate connections among those who are growing and using grains, on whatever scale, and with the hope that it will encourage more widespread cultivation and use.
 	We are especially grateful to Eli Rogosa and other pioneers in working to revive interest in heritage grains.
 	</p>
-	<h2>  Log in or register to participate in the Grain Network </h2>
+<h2> To participate in the Grain Network, </h2>
+<h2 style = "margin-top: -1em">  <a href="#login"> Log in</a>&nbsp; or <a href="#register">Register </a>&nbsp; </h2>
         <table>
         <tr>
-        <td width="298" height="714" valign="top">
-            <span class="sectionheader">Member Login:</span>
+        <td width="100%"  valign="top">
+            <a id="login">
+            <span class="sectionheader">Member Login:</span> </a>
             <form method="post" action="{% url 'auth-views-login' %}">
             <table>{% csrf_token %}
                 {{ login_form.as_table }}
-                <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
+                <tr>
+                  <td colspan="1" style="text-align: right"><input type="submit" value="Log in"></td>
+                  <td colspan="1" style="text-align: right"> <a href="{% url 'password_reset' %}">Reset password</a> </td>
+                </tr>
             </table>
                 <input type="hidden" name="next" value="{% url 'seednetwork-home' %}" />
             </form>
-            <a href="{% url 'password_reset' %}">I forgot my password</a>
-
-        </td>
-        <td width="1">&nbsp;</td>
-        <td width="650" valign="top">
-
-        <span class="sectionheader">New Member Profile:</span>
-        <form method="post" action="{% url 'views_user-new_user' %}">
-        <table>{% csrf_token %}
-            {{ create_user_form.as_table }}
-            {{ member_info_form.as_table }}
-            <tr><td colspan="2" style="text-align: right"><input type="submit" value="Register"></td></tr>
-        </table>
-        </form>
+            <br /> <br />
+           <a id="register">
+           <span class="sectionheader">New Member Profile:</span> </a>
+           <form method="post" action="{% url 'views_user-new_user' %}">
+           <table>{% csrf_token %}
+               {{ create_user_form.as_table }}
+               {{ member_info_form.as_table }}
+               <tr><td colspan="1" style="text-align: right"><input type="submit" value="Register"></td></tr>
+           </table>
+           </form>
 
     </td>
     </tr>
