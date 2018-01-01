@@ -31,11 +31,14 @@ function hide_extended_grain_form(){
 }
 
 function filter_choices(){
+//There is a js global variable called original_subcategory
     var subcategoryList = document.getElementById("id_grain_subcategory");
     var grain = document.getElementById("id_crop_type").value;
 //There is a mismatch in the capitalization, so strip out the first letter
     var grain_lc = grain.toLowerCase().concat(':');
     var newList = [];
+    var default_index = 0;
+    var j = 0;
 
     while(subcategoryList.options.length) {
         subcategoryList.remove(0);
@@ -44,6 +47,12 @@ function filter_choices(){
     for (i = 0; i < origOptions.length; i++) {
         if (grain=='-'||origOptions[i].text.toLowerCase().includes(grain_lc)||i==0) {
 	    newList.push(origOptions[i]);
+            // The default selection is a rudimentary contains check with the original grain subcategory
+            // This is currently sufficient with the present subcategories, but would break with a new  "sweet winter" 
+            if (typeof original_subcategory !== 'undefined'  && origOptions[i].text.toLowerCase().includes(original_subcategory)) {
+                default_index=j; 
+            }
+            j++;
         }
     }
 
@@ -51,7 +60,7 @@ function filter_choices(){
         subcategoryList.add(newList[i]);
     }
 
-    subcategoryList.selectedIndex = 0;
+    subcategoryList.selectedIndex = default_index;
 }  
 	
 

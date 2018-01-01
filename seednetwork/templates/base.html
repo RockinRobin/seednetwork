@@ -65,6 +65,11 @@
         </tr>
     </table>
     <script type="text/javascript" src="{% static "js/country_logic.js" %}"></script>
+    {% if seed.grain_subcategory %}
+         <script type="text/javascript">
+              var original_subcategory="{{seed.grain_subcategory|escapejs|safe}}"
+         </script>
+    {% endif %}
     <script type="text/javascript" src="{% static "js/extended_view_logic.js" %}"></script>
     <script type="text/javascript" src="{% static "js/table_hidecol_logic.js" %}"></script>
     </body>
