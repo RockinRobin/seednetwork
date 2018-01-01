@@ -58,19 +58,19 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	first_name = forms.CharField(label = "First Name", max_length=150, required=True)
 	last_name = forms.CharField(label = "Last Name", max_length=150, required=True)
 	email = forms.CharField(max_length=150, required=True)
-	email_is_public = forms.BooleanField( label = "Email is visible to members", required=False, initial=True)
+	email_is_public = forms.BooleanField( label = "Show members email", required=False, initial=True)
 	usda_zone =forms.ChoiceField(label = "USDA Zone", required=False, choices=USDA_ZONE_CHOICES)
 	phone = USPhoneNumberField(max_length=150, required=False)
-	phone_is_public = forms.BooleanField(label = "Phone is visible to members", required=False, initial=True)
+	phone_is_public = forms.BooleanField(label = "Show members phone", required=False, initial=True)
         
         country_code = CountryField(label = "Country", required=True, widget=CountrySelect, initial='US', help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
         street_line = forms.CharField(label="Street Address", widget=forms.Textarea(attrs={'rows'    :'3', 'cols':'60'}), required=False)
         state = USStateField(required=False, widget=USStateSelect, label=None, initial=None, help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
         zipcode = USZipCodeField(max_length=None, min_length=None, required=False)
-	street_address_is_public = forms.BooleanField(label = "Street address is visible to members", required=False, initial=True)
+	street_address_is_public = forms.BooleanField(label = "Show members street addr.", required=False, initial=True)
         
 	mailing_address = forms.CharField(label = "Mailing Address", widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="(Optional for US addresses)")
-	mailing_address_is_public = forms.BooleanField(label = "Mailing address is visible to members", required=False, initial=True)
+	mailing_address_is_public = forms.BooleanField(label = "Show members mailing addr.", required=False, initial=True)
 
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and payment information.")
 	external_url=forms.URLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",initial="http://",widget=TextInput)
