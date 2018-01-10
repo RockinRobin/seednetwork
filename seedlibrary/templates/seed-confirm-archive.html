@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Seed Bank: Confirm seed {% if seed.archived %}un{% endif %}archive{% endblock %}
+{% block title %}Heritage and Landrace Grain Network: Confirm seed {% if seed.archived %}un{% endif %}archive{% endblock %}
 {% block pagetitle %}{% if seed.archived %}Unarchive{% else %}Archive{% endif %} this seed?{% endblock %}
 {% block content %}
     <p><form method="post" action="{% url 'views-seed_confirm_archive' id=seed.id %}">
