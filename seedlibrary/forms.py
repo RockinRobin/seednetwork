@@ -80,7 +80,7 @@ class GrainForm(SeedNetworkBaseForm):
 class ExtendedGrainForm(SeedNetworkBaseForm):
 	improvement_status =forms.ChoiceField(label="Improvement Status", choices=(('-','-'),('landrace','Landrace'),('cultivar','Cultivar'),('unknown','Unknown')),required=False)
 	growth_habit=forms.ChoiceField(label="Growth Habit", choices=(('-','-'),('spring','Spring'),('winter','Winter'),('facultative','Facultative'), ('perennial','Perennial')),required=False)
-        days_to_maturity=forms.IntegerField(label="Days to Maturity", required=False)
+        days_to_maturity=forms.IntegerField(label="Days to Maturity", required=False, help_text="Enter only a single number, even if that is an estimate.")
         lodging=forms.ChoiceField(choices=(('-','-'),(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9')), required=False, help_text="1 = no lodging, 9 = all plants flat.")
 	cultivation=forms.CharField(label="Cultivation",widget=forms.Textarea( attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Bed preparation, spacing, interplanting, fertility needs, pest protection, grown organically?")
 	cold_hardiness=forms.CharField(label="Cold Hardiness", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Susceptibility to frost/freeze damage in spring/fall/winter? For example, \'A freak mid-June frost did not seem to slow down growth at all in USDA zone 5a.\'")
