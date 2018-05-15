@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, Us
 from django.forms.widgets import TextInput
 from localflavor.us.forms import USPhoneNumberField, USStateField, USZipCodeField, USStateSelect
 from generic.forms import CountryField, CountrySelect  
+from django.core.exceptions import ValidationError
 
 USDA_ZONE_CHOICES = (
 	('-', '-'),
@@ -53,6 +54,15 @@ class ModifiedUserCreationForm(UserCreationForm):
 
             	self.fields['password2'].help_text = "Re-enter password for verification" 
 
+class MyURLField(forms.URLField):
+       def to_python(self, value):
+            value = super(MyURLField, self).to_python(value)
+            try:
+                self.run_validators(value)
+            except ValidationError  as e:
+                value = u""
+            return value
+
 class MemberInfoForm(SeedNetworkBaseForm):
 	required_css_class = 'required'
 	first_name = forms.CharField(label = "First Name", max_length=150, required=True)
@@ -73,7 +83,7 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	mailing_address_is_public = forms.BooleanField(label = "Show members mailing addr.", required=False, initial=True)
 
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and payment information.")
-	external_url=forms.URLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",initial="http://",widget=TextInput)
+	external_url=MyURLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",widget=TextInput(attrs={'placeholder':'http://myhomepage.com'}))
 	include_in_member_profiles = forms.BooleanField(label="Include in member index", required=False, initial=True)
 
 	def clean(self):
@@ -83,7 +93,8 @@ class MemberInfoForm(SeedNetworkBaseForm):
                 state = cleaned_data.get("state")
     		if country_code == "US"  and (not zipcode or not state):
         		raise forms.ValidationError("zipcode and state are required fields for US addresses.")
-    		return cleaned_data
+                print cleaned_data
+                return cleaned_data
 
 class SeedNetworkAuthForm(AuthenticationForm):
 	def as_table(self):
