@@ -93,7 +93,6 @@ class MemberInfoForm(SeedNetworkBaseForm):
                 state = cleaned_data.get("state")
     		if country_code == "US"  and (not zipcode or not state):
         		raise forms.ValidationError("zipcode and state are required fields for US addresses.")
-                print cleaned_data
                 return cleaned_data
 
 class SeedNetworkAuthForm(AuthenticationForm):
