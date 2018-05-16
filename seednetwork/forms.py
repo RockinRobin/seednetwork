@@ -74,7 +74,8 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	phone_is_public = forms.BooleanField(label = "Show members phone", required=False, initial=True)
         
         country_code = CountryField(label = "Country", required=True, widget=CountrySelect, initial='US', help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
-        street_line = forms.CharField(label="Street Address", widget=forms.Textarea(attrs={'rows'    :'3', 'cols':'60'}), required=False)
+        street_line = forms.CharField(label="Street Address", widget=forms.Textarea(attrs={'rows'    :'1', 'cols':'60'}), required=False)
+        city = forms.CharField(label="City", widget=forms.Textarea(attrs={'rows'    :'1', 'cols':'60'}), required=False)
         state = USStateField(required=False, widget=USStateSelect, label=None, initial=None, help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
         zipcode = USZipCodeField(max_length=None, min_length=None, required=False)
 	street_address_is_public = forms.BooleanField(label = "Show members street addr.", required=False, initial=True)
