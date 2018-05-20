@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Heritage and Landrace Grain Network{% endblock %}
+
+{% block gitforkribbon%}
+<div class="fork-ribbon-wrapper green">
+  <div class="fork-ribbon-border"></div>
+  <div class="fork-ribbon-container">
+    <div class="fork-ribbon">
+      <div class="fork-ribbon-content"><a href="https://github.com/gridmatterio/seednetwork"><i class="fab fa-github"></i><br/>Fork me on GitHub</a></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block pagetitle %}
     {% if user.is_authenticated %}
          Welcome to the Start Page of the Heritage and Landrace Grain Network
