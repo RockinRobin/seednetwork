@@ -285,7 +285,8 @@ def seed_profile(request, id):
                 extended_view = seed.extendedview_set.get()
         except:
                 extended_view = ExtendedView(parent_seed = seed)
-                extended_view.save()
+                if seed.more_info:
+                	extended_view.save()
         return render_to_response('seed-profile.html',
                         {"seed":seed, "ev": extended_view},
                         context_instance=RequestContext(request))

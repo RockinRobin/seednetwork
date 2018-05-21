@@ -17,11 +17,7 @@
             <td>{{ seed.crop_type|capfirst }}</td>
             <td>{{ seed.grain_subcategory|capfirst }}</td>
             <td>
-                {% if seed.more_info %}
-                        <a href="{% url 'views-seed_profile' id=seed.id %}">{{ seed.seed_variety }}</a>
-                {% else %}
-                        {{ seed.seed_variety|capfirst }}
-                {% endif %}
+                  <a href="{% url 'views-seed_profile' id=seed.id %}">{{ seed.seed_variety }}</a>
             </td>
             <td>{{ seed.year }}</td>
             <td>{{ seed.origin }}</td>
