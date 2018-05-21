@@ -49,7 +49,7 @@ function filter_choices(){
         if (grain=='-'||str2searchin.indexOf(grain_lc)==0||i==0) {
 	    newList.push(origOptions[i]);
             str2searchin = origOptions[i].text.toLowerCase()
-            if (typeof original_subcategory !== 'undefined'  && str2seachin.indexOf(original_subcategory)==0) {
+            if (typeof original_subcategory !== 'undefined'  && str2searchin.indexOf(original_subcategory)>=0) {
                 default_index=j; 
             }
             j++;
