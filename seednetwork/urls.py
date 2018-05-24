@@ -6,6 +6,7 @@ from django.contrib import admin, auth
 from seednetwork import settings, views, views_user
 from django.views  import static
 from seednetwork.forms import SeedNetworkAuthForm, SeedNetworkPasswordChangeForm
+from django.views.generic import TemplateView, RedirectView
 
 admin.autodiscover()
 
@@ -15,6 +16,12 @@ urlpatterns = [
     url(r'^seedlibrary/', include('seedlibrary.urls')),
 
     url(r'^$', views.home, name='seednetwork-home'),
+    url(r'^about-us/$', TemplateView.as_view(template_name='about_us.html'), name='seednetwork-about-us'),
+    url(r'^agreement/$', TemplateView.as_view(template_name='agreement.html'), name='seednetwork-agreement'),
+    url(r'^glossary/$', TemplateView.as_view(template_name='glossary.html'), name='seednetwork-glossary'),
+
+    # External link to wiki
+    url(r'^wiki/$', RedirectView.as_view(url='http://grainnetwork.pbworks.com/'),name='external_wiki'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -27,20 +27,21 @@
         <tr>
             <td style="margin-top:-20px; width:99%;" class="nav"  height="27">
                {% block gitforkribbon%}{% endblock %}
+		     <a href="{% url 'seednetwork-home' %}">Home</a>
+  		     <a href="{% url 'seednetwork-about-us' %}">About Us</a>
                 {% if user.is_authenticated %}
-				 <a href="{% url 'seednetwork-home' %}">Start Page</a>
                      <a href="{% url 'views-seed_create' %}">Add Seed</a>
                      <a href="{% url 'views_search-seed_search' %}">Browse Seeds</a>
                      <a href="{% url 'views_user-members' %}">Network Members</a>
                      <a href="{% url 'views_user-profile' %}">My Profile</a>
                      <a href="{% url 'views-seeds' %}">My Seeds</a>
-
-                    <a href="{% url 'auth-views-logout' %}">Log Out</a>
+		     <a href="{% url 'seednetwork-glossary' %}">Glossary</a>
+                    <a href="{% url 'auth-views-logout' %}">Logout</a>
                     {% if user.is_staff %}
-                         <a href="/admin">Admin Panel</a> 
+                         <a href="/admin">Admin</a> 
                     {% endif %}
-				|
                 {% endif %}
+                   | <a href="{% url 'external_wiki' %}">Wiki</a>
             </td>
 			
         </tr>
