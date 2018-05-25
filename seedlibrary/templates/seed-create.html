@@ -3,7 +3,9 @@
 {% block pagetitle %}Add a New Seed{% endblock %}
 
 {% block content %}
-   
+        <p>
+Please list as much or as little information about your seed as you like. To learn more about the different fields on this form, including the fields under "More Information," check out the <a href="{% url 'seednetwork-glossary' %}">glossary</a>  or the <a href="{% url 'external_wiki' %}">wiki</a>.
+	</p> 
         <h3>List your grain! (one variety per form, please)</h3>
         <form action="." method="post">{% csrf_token %}
             <table>

@@ -3,6 +3,9 @@
 {% block pagetitle %}Browse Seeds{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
+	<p>
+Browse or search for seeds. Click on the seed's variety name link to see more information about a seed. Seeds without this link display all available information in the table below.
+	</p>
         <form  class="searchform" method="post" action="{% url 'views_search-seed_search' %}">{% csrf_token %}
             <input type="text" name="q" value="{{ q }}"> <input type="submit" value="Search"><br/>
             <input type="checkbox" name="archive" {{ archived_checked }}>Include archived seeds
