@@ -55,6 +55,7 @@ def seed_create(request):
                 if seed_form.is_valid() and seed.more_info and seed_form_extended.is_valid():
                         extended_seed = ExtendedView.objects.create(
                                 parent_seed = seed,
+				latin_name = seed_form_extended.cleaned_data['latin_name'],
                                 improvement_status = seed_form_extended.cleaned_data['improvement_status'],
                                 growth_habit = seed_form_extended.cleaned_data['growth_habit'],
                                 lodging = seed_form_extended.cleaned_data['lodging'],
@@ -111,6 +112,7 @@ def fill_seed_from_form(seed, form):
         seed.more_info = form.cleaned_data['more_info']
 
 def fill_ev_from_evform(extended_view, evform):
+	extended_view.latin_name = evform.cleaned_data['latin_name']
         extended_view.improvement_status = evform.cleaned_data['improvement_status']
         extended_view.growth_habit = evform.cleaned_data['growth_habit']
         extended_view.lodging = evform.cleaned_data['lodging']
@@ -219,6 +221,7 @@ def seed_edit(request, id):
 		data['origin'] = seed.origin
                 data['more_info'] = seed.more_info
                 if seed.more_info:
+		       data['latin_name']=extended_view.latin_name
                        data['improvement_status']=extended_view.improvement_status
                        data['growth_habit']=extended_view.growth_habit
                        data['lodging']=extended_view.lodging

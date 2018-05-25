@@ -25,6 +25,7 @@ class Seed(models.Model):
 
 class ExtendedView(models.Model):
      parent_seed = models.ForeignKey(Seed)
+     latin_name = models.CharField(max_length=100, blank=True)
      improvement_status = models.CharField(max_length=30, blank=True)
      growth_habit = models.CharField(max_length=30, blank=True)
      lodging = models.CharField(max_length=3, blank=True)

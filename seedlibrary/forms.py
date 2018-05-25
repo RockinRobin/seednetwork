@@ -80,6 +80,7 @@ class GrainForm(SeedNetworkBaseForm):
 	more_info = forms.BooleanField(label="More Information", required=False, help_text="Check the box to provide more detailed information that will be available on the seed's profile page.")
 
 class ExtendedGrainForm(SeedNetworkBaseForm):
+        latin_name = forms.CharField(label="Latin Name", max_length=100, required=False, help_text="e.g. Triticum monococcum")
 	improvement_status =forms.ChoiceField(label="Improvement Status", choices=(('-','-'),('landrace','Landrace'),('cultivar','Cultivar'),('unknown','Unknown')),required=False)
 	growth_habit=forms.ChoiceField(label="Growth Habit", choices=(('-','-'),('spring','Spring'),('winter','Winter'),('facultative','Facultative'), ('perennial','Perennial')),required=False)
         days_to_maturity=forms.IntegerField(label="Days to Maturity", required=False, help_text="Enter only a single number, even if that is an estimate.")
