@@ -36,6 +36,7 @@ def fill_member_from_form(mi, form):
 	mi.about_me = form.cleaned_data['about_me']
         mi.external_url = form.cleaned_data['external_url']
 	mi.include_in_member_profiles = form.cleaned_data['include_in_member_profiles']
+	mi.site_agreement = form.cleaned_data['site_agreement']
 
 def new_user(request):
 

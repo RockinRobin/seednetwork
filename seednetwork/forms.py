@@ -4,7 +4,6 @@ from django.forms.widgets import TextInput
 from localflavor.us.forms import USPhoneNumberField, USStateField, USZipCodeField, USStateSelect
 from generic.forms import CountryField, CountrySelect  
 from django.core.exceptions import ValidationError
-from django.utils.safestring import mark_safe
 from django.utils.translation import string_concat
 from django.core.urlresolvers import reverse_lazy
 
@@ -89,7 +88,6 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and payment information.")
 	external_url=MyURLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",widget=TextInput(attrs={'placeholder':'http://myhomepage.com'}))
 	include_in_member_profiles = forms.BooleanField(label="Include in member index", required=False, initial=True)
-        #site_agreement = forms.BooleanField(label="Site agreement", help_text=mark_safe("Check here to indicate that you have read and agree to the network site <a href="{% url 'seednetwork-glossary' %}">Glossary</a>."), required=True, initial=False)
 	site_agreement = forms.BooleanField(label="Accept site agreement", required=True, initial=False)
 
 	agreement_help_text = string_concat(
