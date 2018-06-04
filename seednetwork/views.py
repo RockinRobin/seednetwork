@@ -49,7 +49,7 @@ def contact(request):
             		email = EmailMessage(
                 	    "New contact form submission",
                 	    content,
-               		    "Heritage and Landrace Grain Network" +'',
+			    settings.DEFAULT_FROM_EMAIL,
                 	    [settings.DEFAULT_FROM_EMAIL,contact_email],
                 	    headers = {'Reply-To': contact_email }
             		)
