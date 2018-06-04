@@ -1,0 +1,13 @@
+
+Contact Name:
+{{ contact_name }}
+
+Email:
+{{ contact_email }}
+
+Content:
+The Heritage and Landrace Grain Network has recieved a message from you. We will do our best to respond shortly. 
+
+For your records we have included the message we recieved from you below.
+----------------------------------------------------------------------
+{{ form_body|safe|striptags }}

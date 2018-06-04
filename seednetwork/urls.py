@@ -23,6 +23,10 @@ urlpatterns = [
     # External link to wiki
     url(r'^wiki/$', RedirectView.as_view(url='http://grainnetwork.pbworks.com/'),name='external_wiki'),
 
+    #Contact page
+    url(r'^contact/$', views.contact, name='seednetwork-contact'),
+    url(r'^contact/done/$', TemplateView.as_view(template_name='contact_done.html'), name='seednetwork-contact_done'),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

@@ -114,3 +114,7 @@ class SeedNetworkPasswordChangeForm(PasswordChangeForm):
 		return as_table_func(self)
 #site_agreement = forms.BooleanField(label="Site agreement", help_text=mark_safe("Check here to indicate that you have read and agree to the network site <a href="{% url 'seednetwork-glossary' %}">Glossary</a>."), required=True, initial=False)
 
+class ContactForm(forms.Form):
+	contact_name = forms.CharField(required=True, label="Your name")
+	contact_email = forms.EmailField(required=True, label="Your email")
+	body  = forms.CharField(required=True, help_text = "How can we help?", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}))
