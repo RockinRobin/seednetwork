@@ -34,6 +34,10 @@ def seed_search(request):
 				Q(seed_type__icontains=word)|
 				Q(crop_type__icontains=word)|
 				Q(seed_variety__icontains=word)|
+				Q(grain_subcategory__icontains=word)|
+				Q(seed_description__icontains=word)|
+				Q(origin__icontains=word)|
+				Q(user__memberinfo__usda_zone__icontains=word)|
 				Q(user__username__icontains=word)
 			)
 

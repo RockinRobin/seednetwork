@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Heritage and Landrace Grain Network{% endblock %}
+
+{% block gitforkribbon%}
+<div class="fork-ribbon-wrapper green">
+  <div class="fork-ribbon-border"></div>
+  <div class="fork-ribbon-container">
+    <div class="fork-ribbon">
+      <div class="fork-ribbon-content"><a href="https://github.com/gridmatterio/seednetwork"><i class="fab fa-github"></i><br/>Fork me on GitHub</a></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block pagetitle %}
     {% if user.is_authenticated %}
-         Welcome to the Start Page of the Heritage and Landrace Grain Network
+         Welcome to the Heritage and Landrace Grain Network
     {% else %}
          Welcome to the Heritage and Landrace Grain Network
     {% endif %}
@@ -23,15 +35,12 @@
         </form></p>
     {% else %}
 	<p>
-	Around the country farmers and gardeners are rediscovering the importance and pleasure of growing heritage and landrace grains. Their flavor, high nutrient content, adaptability to a range of conditions, beauty, and interesting histories compel us to become involved with growing and re-introducing them in a time of climate change and alarming loss of diversity.
-	<br /><br />
-	This site offers the opportunity for members to share seeds, knowledge, and experience and to network with other growers. We hope eventually to identify outstanding varieties that can be shared with other farmers, grown out in larger quantity, and tested for baking qualities and other uses. We invite you to join in this effort.
-	</p>
-	<p>
-	Who are we? <br />
-	Sylvia and Ruth are both Vermont gardeners with seed saving backgrounds who have been increasingly drawn to ancient grains over the last few years.
-	We created this website to facilitate connections among those who are growing and using grains, on whatever scale, and with the hope that it will encourage more widespread cultivation and use.
-	We are especially grateful to Eli Rogosa and other pioneers in working to revive interest in heritage grains.
+This site offers the opportunity for members to share seeds, knowledge, and experience and to network with other growers and bakers interested in heritage and landrace grains.
+<br /> <br> 
+We invite you to register and join us if you would like to be part of our network. 
+<br /> <br>
+Please read the <a href="{% url 'seednetwork-about-us' %}">About Us</a> page to learn more. You can also visit the Heritage and Landrace Grain Network <a href="{% url 'external_wiki' %}">Wiki</a>.
+<br /> <br>
 	</p>
 <h2> To participate in the Grain Network, </h2>
 <h2 style = "margin-top: -1em">  <a href="#login"> Log in</a>&nbsp; or <a href="#register">Register </a>&nbsp; </h2>

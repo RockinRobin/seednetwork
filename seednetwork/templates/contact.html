@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Heritage and Landrace Grain Network: Contact Us{% endblock %}
+{% block pagetitle %}Contact Us{% endblock %}
+{% block content %}
+<span class="sectionheader">Use this form to contact us:</span>
+<br> </br>
+	<form method="post" action="{% url 'seednetwork-contact' %}">
+	<table>{% csrf_token %}
+               {{ form.as_table }}
+               <tr><td colspan="1" style="text-align: right"><input type="submit" value="Send"></td></tr>
+        </table>
+        </form>
+
+
+{% endblock %}

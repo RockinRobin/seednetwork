@@ -50,6 +50,7 @@ class MemberInfo(models.Model):
         external_url = models.URLField(blank=True)
 	include_in_member_profiles = models.BooleanField(default=True)
 
+	site_agreement = models.BooleanField(default=False)
 	def __unicode__(self):
 		return self.user.first_name + ' ' + self.user.last_name
 

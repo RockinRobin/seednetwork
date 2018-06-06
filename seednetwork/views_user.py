@@ -27,7 +27,7 @@ def fill_member_from_form(mi, form):
 	mi.phone_is_public = form.cleaned_data['phone_is_public']
         country_code = form.cleaned_data['country_code']
         if country_code == "US":
-                mi.street_address = '~ '.join([form.cleaned_data['street_line'],form.cleaned_data['state'], form.cleaned_data['zipcode'], country_code])
+                mi.street_address = '~ '.join([form.cleaned_data['street_line'],form.cleaned_data['city'],form.cleaned_data['state'], form.cleaned_data['zipcode'], country_code])
         else:
                 mi.street_address = 'International address~ ' + country_code
 	mi.street_address_is_public = form.cleaned_data['street_address_is_public']
@@ -36,6 +36,7 @@ def fill_member_from_form(mi, form):
 	mi.about_me = form.cleaned_data['about_me']
         mi.external_url = form.cleaned_data['external_url']
 	mi.include_in_member_profiles = form.cleaned_data['include_in_member_profiles']
+	mi.site_agreement = form.cleaned_data['site_agreement']
 
 def new_user(request):
 
@@ -104,19 +105,21 @@ def edit_profile(request):
 		data['phone'] = mi.phone
 		data['phone_is_public'] = mi.phone_is_public
                 try:
-                	sl,cc=mi.street_address.rsplit('~ ',1)
+                	sl, cc=mi.street_address.rsplit('~ ',1)
 		except:
 			sl = mi.street_address
 			cc = "US"
                 data['country_code']= cc
                 if cc == 'US':
 			try:
-				sl, s, z = sl.split('~ ',2)
+				sl, c, s, z = sl.split('~ ',3)
 			except:
 				sl = sl
+                                c = ""
 				s = "AL"
 				z = "11111"
                 	data['street_line'] = sl
+                        data['city'] = c
                 	data['state'] = s
                 	data['zipcode'] = z
                 else:

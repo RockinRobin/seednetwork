@@ -4,8 +4,10 @@
 {% block content %}
 <p>
     <a href="{% url 'views-seed_create' %}">List another seed</a>
+<!--
     |
     <a href="{% url 'views-seed_export' %}">Export my seeds</a>
+-->
 </p>
     <h2>Active</h2>
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>

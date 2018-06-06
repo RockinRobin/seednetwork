@@ -3,6 +3,9 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, Us
 from django.forms.widgets import TextInput
 from localflavor.us.forms import USPhoneNumberField, USStateField, USZipCodeField, USStateSelect
 from generic.forms import CountryField, CountrySelect  
+from django.core.exceptions import ValidationError
+from django.utils.translation import string_concat
+from django.core.urlresolvers import reverse_lazy
 
 USDA_ZONE_CHOICES = (
 	('-', '-'),
@@ -53,6 +56,15 @@ class ModifiedUserCreationForm(UserCreationForm):
 
             	self.fields['password2'].help_text = "Re-enter password for verification" 
 
+class MyURLField(forms.URLField):
+       def to_python(self, value):
+            value = super(MyURLField, self).to_python(value)
+            try:
+                self.run_validators(value)
+            except ValidationError  as e:
+                value = u""
+            return value
+
 class MemberInfoForm(SeedNetworkBaseForm):
 	required_css_class = 'required'
 	first_name = forms.CharField(label = "First Name", max_length=150, required=True)
@@ -64,7 +76,8 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	phone_is_public = forms.BooleanField(label = "Show members phone", required=False, initial=True)
         
         country_code = CountryField(label = "Country", required=True, widget=CountrySelect, initial='US', help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
-        street_line = forms.CharField(label="Street Address", widget=forms.Textarea(attrs={'rows'    :'3', 'cols':'60'}), required=False)
+        street_line = forms.CharField(label="Street Address", widget=forms.Textarea(attrs={'rows'    :'1', 'cols':'60'}), required=False)
+        city = forms.CharField(label="City", widget=forms.Textarea(attrs={'rows'    :'1', 'cols':'60'}), required=False)
         state = USStateField(required=False, widget=USStateSelect, label=None, initial=None, help_text='', error_messages=None, show_hidden_initial=False, validators=[], localize=False, disabled=False, label_suffix=None)
         zipcode = USZipCodeField(max_length=None, min_length=None, required=False)
 	street_address_is_public = forms.BooleanField(label = "Show members street addr.", required=False, initial=True)
@@ -73,8 +86,15 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	mailing_address_is_public = forms.BooleanField(label = "Show members mailing addr.", required=False, initial=True)
 
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="Describe your work, interests, projects, growing conditions, etc.  Also indicate under what conditions you would share seeds. These details might include sharing, trading, purchase, shipping and payment information.")
-	external_url=forms.URLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",initial="http://",widget=TextInput)
+	external_url=MyURLField(label="External URL", required=False, help_text="Include an external webpage here, if desired.",widget=TextInput(attrs={'placeholder':'http://myhomepage.com'}))
 	include_in_member_profiles = forms.BooleanField(label="Include in member index", required=False, initial=True)
+	site_agreement = forms.BooleanField(label="Accept site agreement", required=True, initial=False)
+
+	agreement_help_text = string_concat(
+                u'Check here to indicate that you have read and agree to the Heritage and Landrace Grain Network\'s site <a href="', 
+                reverse_lazy("seednetwork-agreement"),
+                u'">agreement</a>')
+	site_agreement.help_text=agreement_help_text
 
 	def clean(self):
     		cleaned_data = super(MemberInfoForm, self).clean()
@@ -83,7 +103,7 @@ class MemberInfoForm(SeedNetworkBaseForm):
                 state = cleaned_data.get("state")
     		if country_code == "US"  and (not zipcode or not state):
         		raise forms.ValidationError("zipcode and state are required fields for US addresses.")
-    		return cleaned_data
+                return cleaned_data
 
 class SeedNetworkAuthForm(AuthenticationForm):
 	def as_table(self):
@@ -92,4 +112,9 @@ class SeedNetworkAuthForm(AuthenticationForm):
 class SeedNetworkPasswordChangeForm(PasswordChangeForm):
 	def as_table(self):
 		return as_table_func(self)
+#site_agreement = forms.BooleanField(label="Site agreement", help_text=mark_safe("Check here to indicate that you have read and agree to the network site <a href="{% url 'seednetwork-glossary' %}">Glossary</a>."), required=True, initial=False)
 
+class ContactForm(forms.Form):
+	contact_name = forms.CharField(required=True, label="Your name")
+	contact_email = forms.EmailField(required=True, label="Your email")
+	body  = forms.CharField(required=True, help_text = "How can we help?", widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}))
